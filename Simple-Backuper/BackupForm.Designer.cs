@@ -32,68 +32,67 @@
             this.textBoxBackupDirectory = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonBackupPath = new System.Windows.Forms.Button();
-            this.buttonStoragePath = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxBackupStorage = new System.Windows.Forms.TextBox();
             this.numericUpDownBackupsAmount = new System.Windows.Forms.NumericUpDown();
             this.checkBoxBackupsAmount = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.OptionsPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.labelAmount = new System.Windows.Forms.Label();
+            this.panelBackupsAmount = new System.Windows.Forms.Panel();
+            this.panelTimer = new System.Windows.Forms.Panel();
             this.checkBoxTimer = new System.Windows.Forms.CheckBox();
             this.numericUpDownTimer = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.labelTimer = new System.Windows.Forms.Label();
+            this.panelOptions = new System.Windows.Forms.Panel();
+            this.panelStartWithWindow = new System.Windows.Forms.Panel();
             this.checkBoxAutoStart = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.labelBoot = new System.Windows.Forms.Label();
+            this.buttonMakeBackup = new System.Windows.Forms.Button();
+            this.buttonStartBackuping = new System.Windows.Forms.Button();
+            this.buttonStopBackuping = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Main = new System.Windows.Forms.TabPage();
+            this.panelControls = new System.Windows.Forms.Panel();
             this.Backups = new System.Windows.Forms.TabPage();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBoxBackups = new System.Windows.Forms.ComboBox();
+            this.panelBackupManage = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.buttonDeleteBackup = new System.Windows.Forms.Button();
             this.buttonReplace = new System.Windows.Forms.Button();
+            this.buttonDeleteBackup = new System.Windows.Forms.Button();
+            this.comboBoxBackups = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBackupsAmount)).BeginInit();
-            this.OptionsPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelBackupsAmount.SuspendLayout();
+            this.panelTimer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimer)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panelOptions.SuspendLayout();
+            this.panelStartWithWindow.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Main.SuspendLayout();
+            this.panelControls.SuspendLayout();
             this.Backups.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.panelBackupManage.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxBackupDirectory
             // 
             this.textBoxBackupDirectory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.textBoxBackupDirectory.Font = new System.Drawing.Font("Open Sans", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxBackupDirectory.Location = new System.Drawing.Point(4, 29);
+            this.textBoxBackupDirectory.Font = new System.Drawing.Font("Open Sans Light", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxBackupDirectory.Location = new System.Drawing.Point(8, 29);
             this.textBoxBackupDirectory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxBackupDirectory.Multiline = true;
             this.textBoxBackupDirectory.Name = "textBoxBackupDirectory";
             this.textBoxBackupDirectory.ReadOnly = true;
-            this.textBoxBackupDirectory.Size = new System.Drawing.Size(340, 32);
+            this.textBoxBackupDirectory.Size = new System.Drawing.Size(306, 32);
             this.textBoxBackupDirectory.TabIndex = 0;
             this.textBoxBackupDirectory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(4, 3);
+            this.label1.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(8, 3);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 23);
+            this.label1.Size = new System.Drawing.Size(161, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Directory to Backup";
             // 
@@ -101,56 +100,22 @@
             // 
             this.buttonBackupPath.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonBackupPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonBackupPath.Location = new System.Drawing.Point(343, 29);
+            this.buttonBackupPath.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonBackupPath.Location = new System.Drawing.Point(313, 29);
             this.buttonBackupPath.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonBackupPath.Name = "buttonBackupPath";
-            this.buttonBackupPath.Size = new System.Drawing.Size(119, 32);
+            this.buttonBackupPath.Size = new System.Drawing.Size(107, 32);
             this.buttonBackupPath.TabIndex = 2;
             this.buttonBackupPath.Text = "Choose Path";
             this.buttonBackupPath.UseVisualStyleBackColor = false;
-            // 
-            // buttonStoragePath
-            // 
-            this.buttonStoragePath.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonStoragePath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonStoragePath.Location = new System.Drawing.Point(343, 90);
-            this.buttonStoragePath.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonStoragePath.Name = "buttonStoragePath";
-            this.buttonStoragePath.Size = new System.Drawing.Size(119, 32);
-            this.buttonStoragePath.TabIndex = 5;
-            this.buttonStoragePath.Text = "Choose Path";
-            this.buttonStoragePath.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(4, 64);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 23);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Backup Storage";
-            // 
-            // textBoxBackupStorage
-            // 
-            this.textBoxBackupStorage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.textBoxBackupStorage.Font = new System.Drawing.Font("Open Sans", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxBackupStorage.Location = new System.Drawing.Point(4, 90);
-            this.textBoxBackupStorage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBoxBackupStorage.Multiline = true;
-            this.textBoxBackupStorage.Name = "textBoxBackupStorage";
-            this.textBoxBackupStorage.ReadOnly = true;
-            this.textBoxBackupStorage.Size = new System.Drawing.Size(340, 32);
-            this.textBoxBackupStorage.TabIndex = 3;
-            this.textBoxBackupStorage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.buttonBackupPath.Click += new System.EventHandler(this.ButtonBackupPath_Click);
             // 
             // numericUpDownBackupsAmount
             // 
             this.numericUpDownBackupsAmount.Enabled = false;
-            this.numericUpDownBackupsAmount.Location = new System.Drawing.Point(321, 23);
+            this.numericUpDownBackupsAmount.Location = new System.Drawing.Point(289, 23);
             this.numericUpDownBackupsAmount.Name = "numericUpDownBackupsAmount";
-            this.numericUpDownBackupsAmount.Size = new System.Drawing.Size(120, 31);
+            this.numericUpDownBackupsAmount.Size = new System.Drawing.Size(108, 31);
             this.numericUpDownBackupsAmount.TabIndex = 0;
             this.numericUpDownBackupsAmount.Value = new decimal(new int[] {
             5,
@@ -163,10 +128,11 @@
             this.checkBoxBackupsAmount.AutoSize = true;
             this.checkBoxBackupsAmount.Location = new System.Drawing.Point(3, 3);
             this.checkBoxBackupsAmount.Name = "checkBoxBackupsAmount";
-            this.checkBoxBackupsAmount.Size = new System.Drawing.Size(229, 27);
+            this.checkBoxBackupsAmount.Size = new System.Drawing.Size(225, 27);
             this.checkBoxBackupsAmount.TabIndex = 2;
             this.checkBoxBackupsAmount.Text = "Custom Backups Amount";
             this.checkBoxBackupsAmount.UseVisualStyleBackColor = true;
+            this.checkBoxBackupsAmount.CheckedChanged += new System.EventHandler(this.CheckBoxBackupsAmount_CheckedChanged);
             // 
             // label3
             // 
@@ -177,52 +143,54 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Options";
             // 
-            // label4
+            // labelAmount
             // 
-            this.label4.AutoSize = true;
-            this.label4.Enabled = false;
-            this.label4.Location = new System.Drawing.Point(26, 31);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(277, 23);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Choose new max backups amount";
+            this.labelAmount.AutoSize = true;
+            this.labelAmount.Enabled = false;
+            this.labelAmount.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelAmount.Location = new System.Drawing.Point(23, 31);
+            this.labelAmount.Name = "labelAmount";
+            this.labelAmount.Size = new System.Drawing.Size(270, 23);
+            this.labelAmount.TabIndex = 4;
+            this.labelAmount.Text = "Choose new max backups amount";
             // 
-            // OptionsPanel
+            // panelBackupsAmount
             // 
-            this.OptionsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.OptionsPanel.Controls.Add(this.checkBoxBackupsAmount);
-            this.OptionsPanel.Controls.Add(this.numericUpDownBackupsAmount);
-            this.OptionsPanel.Controls.Add(this.label4);
-            this.OptionsPanel.Location = new System.Drawing.Point(0, 35);
-            this.OptionsPanel.Name = "OptionsPanel";
-            this.OptionsPanel.Size = new System.Drawing.Size(458, 64);
-            this.OptionsPanel.TabIndex = 6;
+            this.panelBackupsAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBackupsAmount.Controls.Add(this.checkBoxBackupsAmount);
+            this.panelBackupsAmount.Controls.Add(this.numericUpDownBackupsAmount);
+            this.panelBackupsAmount.Controls.Add(this.labelAmount);
+            this.panelBackupsAmount.Location = new System.Drawing.Point(0, 35);
+            this.panelBackupsAmount.Name = "panelBackupsAmount";
+            this.panelBackupsAmount.Size = new System.Drawing.Size(412, 64);
+            this.panelBackupsAmount.TabIndex = 6;
             // 
-            // panel1
+            // panelTimer
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.checkBoxTimer);
-            this.panel1.Controls.Add(this.numericUpDownTimer);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Location = new System.Drawing.Point(0, 105);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(458, 64);
-            this.panel1.TabIndex = 7;
+            this.panelTimer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTimer.Controls.Add(this.checkBoxTimer);
+            this.panelTimer.Controls.Add(this.numericUpDownTimer);
+            this.panelTimer.Controls.Add(this.labelTimer);
+            this.panelTimer.Location = new System.Drawing.Point(0, 105);
+            this.panelTimer.Name = "panelTimer";
+            this.panelTimer.Size = new System.Drawing.Size(412, 64);
+            this.panelTimer.TabIndex = 7;
             // 
             // checkBoxTimer
             // 
             this.checkBoxTimer.AutoSize = true;
             this.checkBoxTimer.Location = new System.Drawing.Point(3, 3);
             this.checkBoxTimer.Name = "checkBoxTimer";
-            this.checkBoxTimer.Size = new System.Drawing.Size(139, 27);
+            this.checkBoxTimer.Size = new System.Drawing.Size(136, 27);
             this.checkBoxTimer.TabIndex = 2;
             this.checkBoxTimer.Text = "Backup Timer";
             this.checkBoxTimer.UseVisualStyleBackColor = true;
+            this.checkBoxTimer.CheckedChanged += new System.EventHandler(this.CheckBoxTimer_CheckedChanged);
             // 
             // numericUpDownTimer
             // 
             this.numericUpDownTimer.Enabled = false;
-            this.numericUpDownTimer.Location = new System.Drawing.Point(321, 23);
+            this.numericUpDownTimer.Location = new System.Drawing.Point(289, 23);
             this.numericUpDownTimer.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -234,7 +202,7 @@
             0,
             0});
             this.numericUpDownTimer.Name = "numericUpDownTimer";
-            this.numericUpDownTimer.Size = new System.Drawing.Size(120, 31);
+            this.numericUpDownTimer.Size = new System.Drawing.Size(108, 31);
             this.numericUpDownTimer.TabIndex = 0;
             this.numericUpDownTimer.Value = new decimal(new int[] {
             15,
@@ -242,88 +210,97 @@
             0,
             0});
             // 
-            // label6
+            // labelTimer
             // 
-            this.label6.AutoSize = true;
-            this.label6.Enabled = false;
-            this.label6.Location = new System.Drawing.Point(26, 31);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(240, 23);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Choose timer delay (minutes)";
+            this.labelTimer.AutoSize = true;
+            this.labelTimer.Enabled = false;
+            this.labelTimer.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTimer.Location = new System.Drawing.Point(23, 31);
+            this.labelTimer.Name = "labelTimer";
+            this.labelTimer.Size = new System.Drawing.Size(233, 23);
+            this.labelTimer.TabIndex = 4;
+            this.labelTimer.Text = "Choose timer delay (minutes)";
             // 
-            // panel2
+            // panelOptions
             // 
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.panel1);
-            this.panel2.Controls.Add(this.OptionsPanel);
-            this.panel2.Enabled = false;
-            this.panel2.Location = new System.Drawing.Point(4, 128);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(458, 240);
-            this.panel2.TabIndex = 8;
+            this.panelOptions.Controls.Add(this.panelStartWithWindow);
+            this.panelOptions.Controls.Add(this.label3);
+            this.panelOptions.Controls.Add(this.panelTimer);
+            this.panelOptions.Controls.Add(this.panelBackupsAmount);
+            this.panelOptions.Enabled = false;
+            this.panelOptions.Location = new System.Drawing.Point(8, 91);
+            this.panelOptions.Name = "panelOptions";
+            this.panelOptions.Size = new System.Drawing.Size(412, 240);
+            this.panelOptions.TabIndex = 8;
             // 
-            // panel3
+            // panelStartWithWindow
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.checkBoxAutoStart);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Location = new System.Drawing.Point(0, 175);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(458, 64);
-            this.panel3.TabIndex = 8;
+            this.panelStartWithWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelStartWithWindow.Controls.Add(this.checkBoxAutoStart);
+            this.panelStartWithWindow.Controls.Add(this.labelBoot);
+            this.panelStartWithWindow.Location = new System.Drawing.Point(0, 175);
+            this.panelStartWithWindow.Name = "panelStartWithWindow";
+            this.panelStartWithWindow.Size = new System.Drawing.Size(412, 64);
+            this.panelStartWithWindow.TabIndex = 8;
             // 
             // checkBoxAutoStart
             // 
             this.checkBoxAutoStart.AutoSize = true;
+            this.checkBoxAutoStart.Enabled = false;
             this.checkBoxAutoStart.Location = new System.Drawing.Point(3, 3);
             this.checkBoxAutoStart.Name = "checkBoxAutoStart";
-            this.checkBoxAutoStart.Size = new System.Drawing.Size(184, 27);
+            this.checkBoxAutoStart.Size = new System.Drawing.Size(323, 27);
             this.checkBoxAutoStart.TabIndex = 2;
-            this.checkBoxAutoStart.Text = "Start With Windows";
+            this.checkBoxAutoStart.Text = "Start With Windows (Not working now)";
             this.checkBoxAutoStart.UseVisualStyleBackColor = true;
+            this.checkBoxAutoStart.CheckedChanged += new System.EventHandler(this.CheckBoxAutoStart_CheckedChanged);
             // 
-            // label5
+            // labelBoot
             // 
-            this.label5.AutoSize = true;
-            this.label5.Enabled = false;
-            this.label5.Location = new System.Drawing.Point(26, 31);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(327, 23);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "The application starts with Windows boot";
+            this.labelBoot.AutoSize = true;
+            this.labelBoot.Enabled = false;
+            this.labelBoot.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelBoot.Location = new System.Drawing.Point(23, 31);
+            this.labelBoot.Name = "labelBoot";
+            this.labelBoot.Size = new System.Drawing.Size(323, 23);
+            this.labelBoot.TabIndex = 4;
+            this.labelBoot.Text = "The application starts with Windows boot";
             // 
-            // button1
+            // buttonMakeBackup
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(0, 31);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 45);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Make Backup";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonMakeBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMakeBackup.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonMakeBackup.Location = new System.Drawing.Point(0, 31);
+            this.buttonMakeBackup.Name = "buttonMakeBackup";
+            this.buttonMakeBackup.Size = new System.Drawing.Size(122, 45);
+            this.buttonMakeBackup.TabIndex = 9;
+            this.buttonMakeBackup.Text = "Make Backup";
+            this.buttonMakeBackup.UseVisualStyleBackColor = true;
+            this.buttonMakeBackup.Click += new System.EventHandler(this.ButtonMakeBackup_Click);
             // 
-            // button2
+            // buttonStartBackuping
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(165, 31);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(145, 45);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Start Backuping";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonStartBackuping.Enabled = false;
+            this.buttonStartBackuping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonStartBackuping.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonStartBackuping.Location = new System.Drawing.Point(135, 31);
+            this.buttonStartBackuping.Name = "buttonStartBackuping";
+            this.buttonStartBackuping.Size = new System.Drawing.Size(140, 45);
+            this.buttonStartBackuping.TabIndex = 10;
+            this.buttonStartBackuping.Text = "Start Backuping";
+            this.buttonStartBackuping.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonStopBackuping
             // 
-            this.button3.Enabled = false;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(309, 31);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(149, 45);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Stop Backuping";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonStopBackuping.Enabled = false;
+            this.buttonStopBackuping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonStopBackuping.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonStopBackuping.Location = new System.Drawing.Point(274, 31);
+            this.buttonStopBackuping.Name = "buttonStopBackuping";
+            this.buttonStopBackuping.Size = new System.Drawing.Size(138, 45);
+            this.buttonStopBackuping.TabIndex = 11;
+            this.buttonStopBackuping.Text = "Stop Backuping";
+            this.buttonStopBackuping.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -341,134 +318,145 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(487, 500);
+            this.tabControl1.Size = new System.Drawing.Size(438, 500);
             this.tabControl1.TabIndex = 13;
             // 
             // Main
             // 
-            this.Main.Controls.Add(this.panel4);
+            this.Main.Controls.Add(this.panelControls);
             this.Main.Controls.Add(this.label1);
             this.Main.Controls.Add(this.textBoxBackupDirectory);
             this.Main.Controls.Add(this.buttonBackupPath);
-            this.Main.Controls.Add(this.textBoxBackupStorage);
-            this.Main.Controls.Add(this.panel2);
-            this.Main.Controls.Add(this.label2);
-            this.Main.Controls.Add(this.buttonStoragePath);
+            this.Main.Controls.Add(this.panelOptions);
             this.Main.Location = new System.Drawing.Point(4, 32);
             this.Main.Name = "Main";
             this.Main.Padding = new System.Windows.Forms.Padding(3);
-            this.Main.Size = new System.Drawing.Size(479, 464);
+            this.Main.Size = new System.Drawing.Size(430, 464);
             this.Main.TabIndex = 0;
             this.Main.Text = "Main";
             this.Main.UseVisualStyleBackColor = true;
             // 
+            // panelControls
+            // 
+            this.panelControls.Controls.Add(this.label7);
+            this.panelControls.Controls.Add(this.buttonStartBackuping);
+            this.panelControls.Controls.Add(this.buttonStopBackuping);
+            this.panelControls.Controls.Add(this.buttonMakeBackup);
+            this.panelControls.Enabled = false;
+            this.panelControls.Location = new System.Drawing.Point(8, 372);
+            this.panelControls.Name = "panelControls";
+            this.panelControls.Size = new System.Drawing.Size(412, 83);
+            this.panelControls.TabIndex = 13;
+            // 
             // Backups
             // 
-            this.Backups.Controls.Add(this.buttonReplace);
-            this.Backups.Controls.Add(this.buttonDeleteBackup);
-            this.Backups.Controls.Add(this.listView1);
+            this.Backups.Controls.Add(this.panelBackupManage);
             this.Backups.Controls.Add(this.comboBoxBackups);
             this.Backups.Controls.Add(this.label8);
             this.Backups.Location = new System.Drawing.Point(4, 32);
             this.Backups.Name = "Backups";
             this.Backups.Padding = new System.Windows.Forms.Padding(3);
-            this.Backups.Size = new System.Drawing.Size(479, 464);
+            this.Backups.Size = new System.Drawing.Size(430, 464);
             this.Backups.TabIndex = 1;
             this.Backups.Text = "Backups";
             this.Backups.UseVisualStyleBackColor = true;
             // 
-            // panel4
+            // panelBackupManage
             // 
-            this.panel4.Controls.Add(this.label7);
-            this.panel4.Controls.Add(this.button2);
-            this.panel4.Controls.Add(this.button3);
-            this.panel4.Controls.Add(this.button1);
-            this.panel4.Enabled = false;
-            this.panel4.Location = new System.Drawing.Point(4, 372);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(458, 83);
-            this.panel4.TabIndex = 13;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(28, 9);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(118, 23);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Select Backup";
-            // 
-            // comboBoxBackups
-            // 
-            this.comboBoxBackups.FormattingEnabled = true;
-            this.comboBoxBackups.Location = new System.Drawing.Point(152, 6);
-            this.comboBoxBackups.Name = "comboBoxBackups";
-            this.comboBoxBackups.Size = new System.Drawing.Size(287, 31);
-            this.comboBoxBackups.TabIndex = 1;
+            this.panelBackupManage.Controls.Add(this.listView1);
+            this.panelBackupManage.Controls.Add(this.buttonReplace);
+            this.panelBackupManage.Controls.Add(this.buttonDeleteBackup);
+            this.panelBackupManage.Enabled = false;
+            this.panelBackupManage.Location = new System.Drawing.Point(22, 38);
+            this.panelBackupManage.Name = "panelBackupManage";
+            this.panelBackupManage.Size = new System.Drawing.Size(381, 426);
+            this.panelBackupManage.TabIndex = 5;
             // 
             // listView1
             // 
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(32, 43);
+            this.listView1.Location = new System.Drawing.Point(7, 5);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(407, 369);
+            this.listView1.Size = new System.Drawing.Size(366, 364);
             this.listView1.TabIndex = 2;
             this.listView1.TileSize = new System.Drawing.Size(328, 50);
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Tile;
             // 
-            // buttonDeleteBackup
-            // 
-            this.buttonDeleteBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDeleteBackup.Location = new System.Drawing.Point(32, 418);
-            this.buttonDeleteBackup.Name = "buttonDeleteBackup";
-            this.buttonDeleteBackup.Size = new System.Drawing.Size(126, 36);
-            this.buttonDeleteBackup.TabIndex = 3;
-            this.buttonDeleteBackup.Text = "Delete";
-            this.buttonDeleteBackup.UseVisualStyleBackColor = true;
-            // 
             // buttonReplace
             // 
             this.buttonReplace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonReplace.Location = new System.Drawing.Point(157, 418);
+            this.buttonReplace.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonReplace.Location = new System.Drawing.Point(118, 375);
             this.buttonReplace.Name = "buttonReplace";
-            this.buttonReplace.Size = new System.Drawing.Size(282, 36);
+            this.buttonReplace.Size = new System.Drawing.Size(256, 36);
             this.buttonReplace.TabIndex = 4;
             this.buttonReplace.Text = "Replace Original With Backup";
             this.buttonReplace.UseVisualStyleBackColor = true;
             // 
+            // buttonDeleteBackup
+            // 
+            this.buttonDeleteBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDeleteBackup.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDeleteBackup.Location = new System.Drawing.Point(7, 375);
+            this.buttonDeleteBackup.Name = "buttonDeleteBackup";
+            this.buttonDeleteBackup.Size = new System.Drawing.Size(113, 36);
+            this.buttonDeleteBackup.TabIndex = 3;
+            this.buttonDeleteBackup.Text = "Delete";
+            this.buttonDeleteBackup.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxBackups
+            // 
+            this.comboBoxBackups.FormattingEnabled = true;
+            this.comboBoxBackups.Location = new System.Drawing.Point(137, 6);
+            this.comboBoxBackups.Name = "comboBoxBackups";
+            this.comboBoxBackups.Size = new System.Drawing.Size(259, 31);
+            this.comboBoxBackups.TabIndex = 1;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(25, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(115, 23);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Select Backup";
+            // 
             // BackupForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(484, 499);
+            this.ClientSize = new System.Drawing.Size(436, 496);
             this.Controls.Add(this.tabControl1);
-            this.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MaximizeBox = false;
             this.Name = "BackupForm";
             this.Text = "Simple Backuper";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BackupForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBackupsAmount)).EndInit();
-            this.OptionsPanel.ResumeLayout(false);
-            this.OptionsPanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelBackupsAmount.ResumeLayout(false);
+            this.panelBackupsAmount.PerformLayout();
+            this.panelTimer.ResumeLayout(false);
+            this.panelTimer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimer)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panelOptions.ResumeLayout(false);
+            this.panelOptions.PerformLayout();
+            this.panelStartWithWindow.ResumeLayout(false);
+            this.panelStartWithWindow.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.Main.ResumeLayout(false);
             this.Main.PerformLayout();
+            this.panelControls.ResumeLayout(false);
+            this.panelControls.PerformLayout();
             this.Backups.ResumeLayout(false);
             this.Backups.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.panelBackupManage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -478,35 +466,33 @@
         private System.Windows.Forms.TextBox textBoxBackupDirectory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonBackupPath;
-        private System.Windows.Forms.Button buttonStoragePath;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxBackupStorage;
         private System.Windows.Forms.NumericUpDown numericUpDownBackupsAmount;
         private System.Windows.Forms.CheckBox checkBoxBackupsAmount;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel OptionsPanel;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label labelAmount;
+        private System.Windows.Forms.Panel panelBackupsAmount;
+        private System.Windows.Forms.Panel panelTimer;
         private System.Windows.Forms.CheckBox checkBoxTimer;
         private System.Windows.Forms.NumericUpDown numericUpDownTimer;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label labelTimer;
+        private System.Windows.Forms.Panel panelOptions;
+        private System.Windows.Forms.Panel panelStartWithWindow;
         private System.Windows.Forms.CheckBox checkBoxAutoStart;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label labelBoot;
+        private System.Windows.Forms.Button buttonMakeBackup;
+        private System.Windows.Forms.Button buttonStartBackuping;
+        private System.Windows.Forms.Button buttonStopBackuping;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Main;
         private System.Windows.Forms.TabPage Backups;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panelControls;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBoxBackups;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button buttonReplace;
         private System.Windows.Forms.Button buttonDeleteBackup;
+        private System.Windows.Forms.Panel panelBackupManage;
     }
 }
 
