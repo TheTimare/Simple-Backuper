@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -32,11 +33,12 @@ namespace Simple_Backuper
 
         #endregion
 
-        #region tab updating 
+        #region backups list
 
-        private void TabControl_TabIndexChanged(object sender, EventArgs e)
+        // update backup list when user goes to the second tab
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl.TabIndex == 1)
+            if (tabControl.SelectedIndex == 1)
             {
                 UpdateBackupsList();
             }
@@ -44,8 +46,58 @@ namespace Simple_Backuper
 
         private void UpdateBackupsList()
         {
+            string[] backups = Directory.GetDirectories(".\\storage");
+            for(int i = 0; i < backups.Length; i++)
+            {
+                string[] splittedPath = backups[i].Split('\\');
+                backups[i] = splittedPath[splittedPath.Length - 1];
+            }
 
+            // if one of values is changed, than update the list
+            bool needUpdate = false;
+            foreach(string backup in backups)
+            {
+                if (!comboBoxBackups.Items.Contains(backup))
+                {
+                    needUpdate = true;
+                    break;
+                }
+            }
+            if (needUpdate)
+            { 
+                comboBoxBackups.Items.Clear();
+                comboBoxBackups.Items.AddRange(backups);
+            }
         }
+
+        // when user switch backup in combobox
+        private void ComboBoxBackups_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (!panelBackupManage.Enabled) {
+                panelBackupManage.Enabled = true;
+            }
+            UpdateListView();
+        }
+
+        // update list view after users visit to another tab
+        private void ListViewBackups_VisibleChanged(object sender, EventArgs e)
+        {
+            UpdateListView();
+        }
+
+        private void UpdateListView()
+        {
+            string dataPath = ".\\storage\\" + comboBoxBackups.SelectedItem + "\\backups.dat";
+            BackupData data = BackupData.ReadBackupData(dataPath);
+
+            listViewBackups.Items.Clear();
+            foreach (DateTime date in data.Backups)
+            {
+                listViewBackups.Items.Add(date.ToString());
+            }
+        }
+
+
 
         #endregion
 
@@ -174,7 +226,7 @@ namespace Simple_Backuper
             Config.SaveConfig(config, "config.dat");
         }
 
-        #endregion
 
+        #endregion
     }
 }
