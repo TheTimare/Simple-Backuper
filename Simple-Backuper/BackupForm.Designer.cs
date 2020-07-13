@@ -79,7 +79,7 @@
             // textBoxBackupDirectory
             // 
             this.textBoxBackupDirectory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.textBoxBackupDirectory.Font = new System.Drawing.Font("Open Sans Light", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxBackupDirectory.Font = new System.Drawing.Font("Open Sans Light", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxBackupDirectory.Location = new System.Drawing.Point(8, 29);
             this.textBoxBackupDirectory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxBackupDirectory.Multiline = true;
@@ -259,6 +259,7 @@
             this.buttonStartBackuping.TabIndex = 10;
             this.buttonStartBackuping.Text = "Start Backuping";
             this.buttonStartBackuping.UseVisualStyleBackColor = true;
+            this.buttonStartBackuping.Click += new System.EventHandler(this.ButtonStartBackuping_Click);
             // 
             // buttonStopBackuping
             // 
@@ -271,6 +272,7 @@
             this.buttonStopBackuping.TabIndex = 11;
             this.buttonStopBackuping.Text = "Stop Backuping";
             this.buttonStopBackuping.UseVisualStyleBackColor = true;
+            this.buttonStopBackuping.Click += new System.EventHandler(this.ButtonStopBackuping_Click);
             // 
             // label7
             // 

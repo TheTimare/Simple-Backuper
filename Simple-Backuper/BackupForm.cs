@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Simple_Backuper
 {
     public partial class BackupForm : Form
     {
+        private Dictionary<string, Thread> timerThreads;
+
         #region initializtion
 
         public BackupForm()
@@ -17,6 +21,7 @@ namespace Simple_Backuper
             {
                 Directory.CreateDirectory(".\\storage");
             }
+            timerThreads = new Dictionary<string, Thread>();
         }
 
         private void UpdateStatus()
@@ -203,7 +208,47 @@ namespace Simple_Backuper
 
         #region backup timer
 
+        private void ButtonStartBackuping_Click(object sender, EventArgs e)
+        {
+            string backupPath = ".\\storage\\" + DirectoryUtil.GetDirectoryName(textBoxBackupDirectory.Text)
+                + "\\backups.dat";
+            UpdateBackupOptions(backupPath);
+            Thread backupCycle = new Thread(new ParameterizedThreadStart(StartTimerCycle));
+            timerThreads.Add(DirectoryUtil.GetDirectoryName(textBoxBackupDirectory.Text), backupCycle);
+            backupCycle.Start(backupPath);
+            buttonStartBackuping.Enabled = false;
+            buttonStopBackuping.Enabled = true;
+        }
 
+        // method using in separate thread to backup directories
+        private void StartTimerCycle(object backupPath)
+        {
+            while (true)
+            {
+                BackupData data = BackupData.ReadBackupData((string)backupPath);
+                string dirName = DirectoryUtil.GetDirectoryName(data.OriginalPath);
+                Thread.Sleep(data.TimerDelay * 1000 * 60);
+                if (!data.TimerEnabled)
+                {
+                    Thread.CurrentThread.Abort();
+                    timerThreads.Remove(dirName);
+                    break;
+                }
+                CreateBackup(data.OriginalPath, ".\\storage\\" + dirName);
+            }
+        }
+
+        private void ButtonStopBackuping_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                timerThreads[DirectoryUtil.GetDirectoryName(textBoxBackupDirectory.Text)].Abort();
+            }
+            catch (Exception) { }
+            buttonStartBackuping.Enabled = true;
+            buttonStopBackuping.Enabled = false;
+            timerThreads.Remove(DirectoryUtil.GetDirectoryName(textBoxBackupDirectory.Text));
+        }
 
         #endregion
 
@@ -229,6 +274,18 @@ namespace Simple_Backuper
                     panelOptions.Enabled = true;
                     panelControls.Enabled = true;
                     LoadBackupOptions(folderDialog.SelectedPath);
+                    string dirName = DirectoryUtil.GetDirectoryName(folderDialog.SelectedPath);
+                    buttonStartBackuping.Enabled = checkBoxTimer.Checked ? true : false;
+                    buttonStopBackuping.Enabled = false;
+                    try
+                    {
+                        if (timerThreads[dirName].IsAlive)
+                        {
+                            buttonStartBackuping.Enabled = false;
+                            buttonStopBackuping.Enabled = true;
+                        }
+                    }
+                    catch (KeyNotFoundException) { }
                 }
             }
         }
@@ -254,32 +311,29 @@ namespace Simple_Backuper
             data.BackupsAmount = (int)numericUpDownBackupsAmount.Value;
             data.TimerEnabled = checkBoxTimer.Checked;
             data.TimerDelay = (int)numericUpDownTimer.Value;
+            data.OriginalPath = textBoxBackupDirectory.Text;
             BackupData.SaveBackupData(data, backupPath);
         }
 
         // create Backup of choosen directory according to the config
         private void ButtonMakeBackup_Click(object sender, EventArgs e)
         {
-            CreateBackup();
+            CreateBackup(textBoxBackupDirectory.Text, ".\\storage\\" 
+                + DirectoryUtil.GetDirectoryName(textBoxBackupDirectory.Text));
             MessageBox.Show("Backup created successfully");
         }
 
-        private void CreateBackup()
+        private void CreateBackup(string originalPath, string backupPath)
         {
-            // get backup directory name
-            string[] splittedPath = textBoxBackupDirectory.Text.Split('\\');
-            string backupName = splittedPath[splittedPath.Count() - 1];
-            // build path to backups storage
-            string backupPath = Application.StartupPath + "\\storage\\" + backupName;
             Directory.CreateDirectory(backupPath);
 
             // read previous backups data
             BackupData data = BackupData.ReadBackupData(backupPath + "\\backups.dat");
-            data.OriginalPath = textBoxBackupDirectory.Text;
+            data.OriginalPath = originalPath;
 
             // check if backups limit excessed
             DateTime now = DateTime.Now;
-            if (data.Backups.Count() < numericUpDownBackupsAmount.Value)
+            if (data.Backups.Count() < data.BackupsAmount)
             {
                 data.Backups.Add(now);
             }
@@ -310,8 +364,18 @@ namespace Simple_Backuper
             Config.SaveConfig(config, "config.dat");
             UpdateBackupOptions(".\\storage\\" + DirectoryUtil.GetDirectoryName(textBoxBackupDirectory.Text)
                 + "\\backups.dat");
+
+            foreach(Thread thread in timerThreads.Values)
+            {
+                try
+                {
+                    thread.Abort();
+                }
+                catch (Exception) { }
+            }
         }
 
         #endregion
+
     }
 }
