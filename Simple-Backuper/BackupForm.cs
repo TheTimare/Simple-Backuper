@@ -82,7 +82,14 @@ namespace Simple_Backuper
         // update list view after users visit to another tab
         private void ListViewBackups_VisibleChanged(object sender, EventArgs e)
         {
-            UpdateListView();
+            if (comboBoxBackups.SelectedItem != null)
+            {
+                UpdateListView();
+            }
+            else
+            {
+                listViewBackups.Items.Clear();
+            }
         }
 
         private void UpdateListView()
@@ -97,7 +104,52 @@ namespace Simple_Backuper
             }
         }
 
+        // delete choosen backup
+        private void ButtonDeleteBackup_Click(object sender, EventArgs e)
+        {
+            if (listViewBackups.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            string selected = listViewBackups.SelectedItems[0].Text.Replace(':','-');
 
+            // removing selected backup
+            Directory.Delete(".\\storage\\" + comboBoxBackups.SelectedItem + "\\" + selected, true);
+            BackupData data = BackupData.ReadBackupData(".\\storage\\" + comboBoxBackups.SelectedItem + "\\backups.dat");
+            // find first date corresponding with selected date and delete it
+            for(int i = 0; i < data.Backups.Count; i++)
+            {
+                // parsing string format date to usual date and find the same date
+                if (data.Backups[i].ToString().Equals(DateTime.ParseExact(selected, "dd.MM.yyyy HH-mm-ss", null).ToString()))
+                {
+                    data.Backups.RemoveAt(i);
+                    break;
+                }
+            }
+            // save changed data
+            BackupData.SaveBackupData(data, ".\\storage\\" + comboBoxBackups.SelectedItem + "\\backups.dat");
+            // remove deleted backup from list view
+            listViewBackups.Items.Remove(listViewBackups.SelectedItems[0]);
+        }
+
+        // delete original directory and replace it with backup files
+        private void ButtonReplace_Click(object sender, EventArgs e)
+        {
+            if (listViewBackups.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            BackupData data = BackupData.ReadBackupData(".\\storage\\" + comboBoxBackups.SelectedItem + "\\backups.dat");
+            try
+            {
+                Directory.Delete(data.OriginalPath, true);
+            }
+            catch (DirectoryNotFoundException) { }
+            DirectoryUtil.DirectoryCopy(".\\storage\\" + comboBoxBackups.SelectedItem + "\\"
+                + listViewBackups.SelectedItems[0].Text.Replace(':','-'), data.OriginalPath, true);
+
+            MessageBox.Show("The original was successfully replaced by a backup");
+        }
 
         #endregion
 
@@ -187,7 +239,7 @@ namespace Simple_Backuper
 
             // read previous backups data
             BackupData data = BackupData.ReadBackupData(backupPath + "\\backups.dat");
-            data.BackupPath = textBoxBackupDirectory.Text;
+            data.OriginalPath = textBoxBackupDirectory.Text;
 
             // check if backups limit excessed
             DateTime now = DateTime.Now;
@@ -204,7 +256,7 @@ namespace Simple_Backuper
                 data.Backups[data.Backups.IndexOf(timeToReplace)] = now;
             }
             // copy source directory to backup directory named by time
-            DirectoryUtil.DirectoryCopy(data.BackupPath, backupPath + "\\" + now.ToString().Replace(':', '-'), true);
+            DirectoryUtil.DirectoryCopy(data.OriginalPath, backupPath + "\\" + now.ToString().Replace(':', '-'), true);
             // update backup data
             BackupData.SaveBackupData(data, backupPath + "\\backups.dat");
         }

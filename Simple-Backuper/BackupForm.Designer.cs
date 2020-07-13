@@ -53,13 +53,13 @@
             this.Main = new System.Windows.Forms.TabPage();
             this.panelControls = new System.Windows.Forms.Panel();
             this.Backups = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBoxBackups = new System.Windows.Forms.ComboBox();
             this.panelBackupManage = new System.Windows.Forms.Panel();
             this.listViewBackups = new System.Windows.Forms.ListView();
             this.buttonReplace = new System.Windows.Forms.Button();
             this.buttonDeleteBackup = new System.Windows.Forms.Button();
-            this.comboBoxBackups = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBackupsAmount)).BeginInit();
             this.panelBackupsAmount.SuspendLayout();
             this.panelTimer.SuspendLayout();
@@ -70,8 +70,8 @@
             this.Main.SuspendLayout();
             this.panelControls.SuspendLayout();
             this.Backups.SuspendLayout();
-            this.panelBackupManage.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panelBackupManage.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxBackupDirectory
@@ -364,6 +364,27 @@
             this.Backups.Text = "Backups";
             this.Backups.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.comboBoxBackups);
+            this.panel1.Location = new System.Drawing.Point(144, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(254, 38);
+            this.panel1.TabIndex = 6;
+            // 
+            // comboBoxBackups
+            // 
+            this.comboBoxBackups.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.comboBoxBackups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBackups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxBackups.FormattingEnabled = true;
+            this.comboBoxBackups.Location = new System.Drawing.Point(-1, 3);
+            this.comboBoxBackups.Name = "comboBoxBackups";
+            this.comboBoxBackups.Size = new System.Drawing.Size(254, 31);
+            this.comboBoxBackups.TabIndex = 1;
+            this.comboBoxBackups.SelectedValueChanged += new System.EventHandler(this.ComboBoxBackups_SelectedValueChanged);
+            // 
             // panelBackupManage
             // 
             this.panelBackupManage.Controls.Add(this.listViewBackups);
@@ -401,6 +422,7 @@
             this.buttonReplace.TabIndex = 4;
             this.buttonReplace.Text = "Replace Original With Backup";
             this.buttonReplace.UseVisualStyleBackColor = true;
+            this.buttonReplace.Click += new System.EventHandler(this.ButtonReplace_Click);
             // 
             // buttonDeleteBackup
             // 
@@ -412,18 +434,7 @@
             this.buttonDeleteBackup.TabIndex = 3;
             this.buttonDeleteBackup.Text = "Delete";
             this.buttonDeleteBackup.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxBackups
-            // 
-            this.comboBoxBackups.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.comboBoxBackups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxBackups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxBackups.FormattingEnabled = true;
-            this.comboBoxBackups.Location = new System.Drawing.Point(-1, 3);
-            this.comboBoxBackups.Name = "comboBoxBackups";
-            this.comboBoxBackups.Size = new System.Drawing.Size(254, 31);
-            this.comboBoxBackups.TabIndex = 1;
-            this.comboBoxBackups.SelectedValueChanged += new System.EventHandler(this.ComboBoxBackups_SelectedValueChanged);
+            this.buttonDeleteBackup.Click += new System.EventHandler(this.ButtonDeleteBackup_Click);
             // 
             // label8
             // 
@@ -433,15 +444,6 @@
             this.label8.Size = new System.Drawing.Size(115, 23);
             this.label8.TabIndex = 0;
             this.label8.Text = "Select Backup";
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.comboBoxBackups);
-            this.panel1.Location = new System.Drawing.Point(144, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(254, 38);
-            this.panel1.TabIndex = 6;
             // 
             // BackupForm
             // 
@@ -475,8 +477,8 @@
             this.panelControls.PerformLayout();
             this.Backups.ResumeLayout(false);
             this.Backups.PerformLayout();
-            this.panelBackupManage.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panelBackupManage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

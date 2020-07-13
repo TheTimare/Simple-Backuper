@@ -8,14 +8,14 @@ namespace Simple_Backuper
     [Serializable]
     class BackupData
     {
-        public string BackupPath { get; set; }
+        public string OriginalPath { get; set; }
 
         public List<DateTime> Backups { get; }
 
         public BackupData()
         {
             Backups = new List<DateTime>();
-            BackupPath = "";
+            OriginalPath = "";
         }
 
         // saves backup data to the choosen directory
