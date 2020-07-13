@@ -49,7 +49,7 @@
             this.buttonStartBackuping = new System.Windows.Forms.Button();
             this.buttonStopBackuping = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.Main = new System.Windows.Forms.TabPage();
             this.panelControls = new System.Windows.Forms.Panel();
             this.Backups = new System.Windows.Forms.TabPage();
@@ -65,7 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimer)).BeginInit();
             this.panelOptions.SuspendLayout();
             this.panelStartWithWindow.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.Main.SuspendLayout();
             this.panelControls.SuspendLayout();
             this.Backups.SuspendLayout();
@@ -113,9 +113,9 @@
             // numericUpDownBackupsAmount
             // 
             this.numericUpDownBackupsAmount.Enabled = false;
-            this.numericUpDownBackupsAmount.Location = new System.Drawing.Point(289, 23);
+            this.numericUpDownBackupsAmount.Location = new System.Drawing.Point(296, 23);
             this.numericUpDownBackupsAmount.Name = "numericUpDownBackupsAmount";
-            this.numericUpDownBackupsAmount.Size = new System.Drawing.Size(108, 31);
+            this.numericUpDownBackupsAmount.Size = new System.Drawing.Size(101, 31);
             this.numericUpDownBackupsAmount.TabIndex = 0;
             this.numericUpDownBackupsAmount.Value = new decimal(new int[] {
             5,
@@ -190,7 +190,7 @@
             // numericUpDownTimer
             // 
             this.numericUpDownTimer.Enabled = false;
-            this.numericUpDownTimer.Location = new System.Drawing.Point(289, 23);
+            this.numericUpDownTimer.Location = new System.Drawing.Point(296, 23);
             this.numericUpDownTimer.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -202,7 +202,7 @@
             0,
             0});
             this.numericUpDownTimer.Name = "numericUpDownTimer";
-            this.numericUpDownTimer.Size = new System.Drawing.Size(108, 31);
+            this.numericUpDownTimer.Size = new System.Drawing.Size(101, 31);
             this.numericUpDownTimer.TabIndex = 0;
             this.numericUpDownTimer.Value = new decimal(new int[] {
             15,
@@ -311,15 +311,16 @@
             this.label7.TabIndex = 12;
             this.label7.Text = "Controls";
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.Main);
-            this.tabControl1.Controls.Add(this.Backups);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(438, 500);
-            this.tabControl1.TabIndex = 13;
+            this.tabControl.Controls.Add(this.Main);
+            this.tabControl.Controls.Add(this.Backups);
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(438, 500);
+            this.tabControl.TabIndex = 13;
+            this.tabControl.TabIndexChanged += new System.EventHandler(this.TabControl_TabIndexChanged);
             // 
             // Main
             // 
@@ -379,7 +380,7 @@
             this.listView1.Location = new System.Drawing.Point(7, 5);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(366, 364);
+            this.listView1.Size = new System.Drawing.Size(367, 364);
             this.listView1.TabIndex = 2;
             this.listView1.TileSize = new System.Drawing.Size(328, 50);
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -430,7 +431,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(436, 496);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -449,7 +450,7 @@
             this.panelOptions.PerformLayout();
             this.panelStartWithWindow.ResumeLayout(false);
             this.panelStartWithWindow.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.Main.ResumeLayout(false);
             this.Main.PerformLayout();
             this.panelControls.ResumeLayout(false);
@@ -483,7 +484,7 @@
         private System.Windows.Forms.Button buttonStartBackuping;
         private System.Windows.Forms.Button buttonStopBackuping;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage Main;
         private System.Windows.Forms.TabPage Backups;
         private System.Windows.Forms.Panel panelControls;
