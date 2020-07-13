@@ -46,5 +46,11 @@ namespace Simple_Backuper
                 }
             }
         }
+
+        public static string GetDirectoryName(string path)
+        {
+            string[] splittedPath = path.Split('\\');
+            return splittedPath[splittedPath.Count() - 1];
+        }
     }
 }

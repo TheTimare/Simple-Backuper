@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -13,10 +12,14 @@ namespace Simple_Backuper
         public BackupForm()
         {
             InitializeComponent();
-            UpdateConfig();
+            UpdateStatus();
+            if (!Directory.Exists(".\\storage"))
+            {
+                Directory.CreateDirectory(".\\storage");
+            }
         }
 
-        private void UpdateConfig()
+        private void UpdateStatus()
         {
             Config config = Config.LoadConfig("config.dat");
             textBoxBackupDirectory.Text = config.BackupedFolder;
@@ -24,16 +27,13 @@ namespace Simple_Backuper
             {
                 panelOptions.Enabled = true;
                 panelControls.Enabled = true;
+                LoadBackupOptions(config.BackupedFolder);
             }
-            checkBoxBackupsAmount.Checked = config.CustomBackupsEnabled;
-            numericUpDownBackupsAmount.Value = config.BackupsAmount;
-            checkBoxTimer.Checked = config.TimerEnabled;
-            numericUpDownTimer.Value = config.TimerDelay;
         }
 
         #endregion
 
-        #region backups list
+        #region backups managing
 
         // update backup list when user goes to the second tab
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -130,7 +130,7 @@ namespace Simple_Backuper
             BackupData.SaveBackupData(data, ".\\storage\\" + comboBoxBackups.SelectedItem + "\\backups.dat");
             // remove deleted backup from list view
             listViewBackups.Items.Remove(listViewBackups.SelectedItems[0]);
-        }
+            }
 
         // delete original directory and replace it with backup files
         private void ButtonReplace_Click(object sender, EventArgs e)
@@ -201,11 +201,22 @@ namespace Simple_Backuper
 
         #endregion
 
-        #region Backup making
+        #region backup timer
+
+
+
+        #endregion
+
+        #region Backup choosing and making
 
         // set backup path
         private void ButtonBackupPath_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(textBoxBackupDirectory.Text))
+            {
+                UpdateBackupOptions(".\\storage\\" + DirectoryUtil.GetDirectoryName(textBoxBackupDirectory.Text)
+                + "\\backups.dat");
+            }
             // get backup folder path
             using (var folderDialog = new FolderBrowserDialog())
             {
@@ -217,8 +228,33 @@ namespace Simple_Backuper
                     textBoxBackupDirectory.Text = folderDialog.SelectedPath;
                     panelOptions.Enabled = true;
                     panelControls.Enabled = true;
+                    LoadBackupOptions(folderDialog.SelectedPath);
                 }
             }
+        }
+
+        private void LoadBackupOptions(string path)
+        {
+            if (!Directory.Exists(".\\storage\\" + DirectoryUtil.GetDirectoryName(path)))
+            {
+                Directory.CreateDirectory(".\\storage\\" + DirectoryUtil.GetDirectoryName(path));
+            }
+            BackupData data = BackupData.ReadBackupData(".\\storage\\"
+                       + DirectoryUtil.GetDirectoryName(path) + "\\backups.dat");
+            checkBoxBackupsAmount.Checked = data.CustomBackupsEnabled;
+            numericUpDownBackupsAmount.Value = data.BackupsAmount;
+            checkBoxTimer.Checked = data.TimerEnabled;
+            numericUpDownTimer.Value = data.TimerDelay;
+        }
+
+        private void UpdateBackupOptions(string backupPath)
+        {
+            BackupData data = BackupData.ReadBackupData(backupPath);
+            data.CustomBackupsEnabled = checkBoxBackupsAmount.Checked;
+            data.BackupsAmount = (int)numericUpDownBackupsAmount.Value;
+            data.TimerEnabled = checkBoxTimer.Checked;
+            data.TimerDelay = (int)numericUpDownTimer.Value;
+            BackupData.SaveBackupData(data, backupPath);
         }
 
         // create Backup of choosen directory according to the config
@@ -270,14 +306,11 @@ namespace Simple_Backuper
         {
             Config config = new Config();
             config.BackupedFolder = textBoxBackupDirectory.Text;
-            config.CustomBackupsEnabled = checkBoxBackupsAmount.Checked;
-            config.BackupsAmount = (int)numericUpDownBackupsAmount.Value;
-            config.TimerEnabled = checkBoxTimer.Checked;
-            config.TimerDelay = (int)numericUpDownTimer.Value;
-
+            config.AutoStart = checkBoxAutoStart.Checked;
             Config.SaveConfig(config, "config.dat");
+            UpdateBackupOptions(".\\storage\\" + DirectoryUtil.GetDirectoryName(textBoxBackupDirectory.Text)
+                + "\\backups.dat");
         }
-
 
         #endregion
     }

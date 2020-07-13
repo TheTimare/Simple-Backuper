@@ -12,10 +12,20 @@ namespace Simple_Backuper
 
         public List<DateTime> Backups { get; }
 
+        public bool CustomBackupsEnabled { get; set; }
+        public int BackupsAmount { get; set; }
+
+        public bool TimerEnabled { get; set; }
+        public int TimerDelay { get; set; }
+
         public BackupData()
         {
             Backups = new List<DateTime>();
             OriginalPath = "";
+            CustomBackupsEnabled = false;
+            BackupsAmount = 5;
+            TimerEnabled = false;
+            TimerDelay = 15;
         }
 
         // saves backup data to the choosen directory

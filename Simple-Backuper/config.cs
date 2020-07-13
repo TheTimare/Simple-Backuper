@@ -9,19 +9,12 @@ namespace Simple_Backuper
     {
         public string BackupedFolder { get; set; }
 
-        public bool CustomBackupsEnabled { get; set; }
-        public int BackupsAmount { get; set; }
-
-        public bool TimerEnabled { get; set; }
-        public int TimerDelay { get; set; }
+        public bool AutoStart { get; set; }
 
         public Config()
         {
             BackupedFolder = "";
-            CustomBackupsEnabled = true;
-            BackupsAmount = 5;
-            TimerEnabled = false;
-            TimerDelay = 15;
+            AutoStart = false;
         }
 
         // saves config file to the choosen directory

@@ -42,9 +42,6 @@
             this.numericUpDownTimer = new System.Windows.Forms.NumericUpDown();
             this.labelTimer = new System.Windows.Forms.Label();
             this.panelOptions = new System.Windows.Forms.Panel();
-            this.panelStartWithWindow = new System.Windows.Forms.Panel();
-            this.checkBoxAutoStart = new System.Windows.Forms.CheckBox();
-            this.labelBoot = new System.Windows.Forms.Label();
             this.buttonMakeBackup = new System.Windows.Forms.Button();
             this.buttonStartBackuping = new System.Windows.Forms.Button();
             this.buttonStopBackuping = new System.Windows.Forms.Button();
@@ -60,18 +57,23 @@
             this.buttonReplace = new System.Windows.Forms.Button();
             this.buttonDeleteBackup = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.Settings = new System.Windows.Forms.TabPage();
+            this.panelStartWithWindow = new System.Windows.Forms.Panel();
+            this.checkBoxAutoStart = new System.Windows.Forms.CheckBox();
+            this.labelBoot = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBackupsAmount)).BeginInit();
             this.panelBackupsAmount.SuspendLayout();
             this.panelTimer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimer)).BeginInit();
             this.panelOptions.SuspendLayout();
-            this.panelStartWithWindow.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.Main.SuspendLayout();
             this.panelControls.SuspendLayout();
             this.Backups.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelBackupManage.SuspendLayout();
+            this.Settings.SuspendLayout();
+            this.panelStartWithWindow.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxBackupDirectory
@@ -225,48 +227,14 @@
             // 
             // panelOptions
             // 
-            this.panelOptions.Controls.Add(this.panelStartWithWindow);
             this.panelOptions.Controls.Add(this.label3);
             this.panelOptions.Controls.Add(this.panelTimer);
             this.panelOptions.Controls.Add(this.panelBackupsAmount);
             this.panelOptions.Enabled = false;
-            this.panelOptions.Location = new System.Drawing.Point(8, 91);
+            this.panelOptions.Location = new System.Drawing.Point(8, 67);
             this.panelOptions.Name = "panelOptions";
-            this.panelOptions.Size = new System.Drawing.Size(412, 240);
+            this.panelOptions.Size = new System.Drawing.Size(412, 174);
             this.panelOptions.TabIndex = 8;
-            // 
-            // panelStartWithWindow
-            // 
-            this.panelStartWithWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelStartWithWindow.Controls.Add(this.checkBoxAutoStart);
-            this.panelStartWithWindow.Controls.Add(this.labelBoot);
-            this.panelStartWithWindow.Location = new System.Drawing.Point(0, 175);
-            this.panelStartWithWindow.Name = "panelStartWithWindow";
-            this.panelStartWithWindow.Size = new System.Drawing.Size(412, 64);
-            this.panelStartWithWindow.TabIndex = 8;
-            // 
-            // checkBoxAutoStart
-            // 
-            this.checkBoxAutoStart.AutoSize = true;
-            this.checkBoxAutoStart.Enabled = false;
-            this.checkBoxAutoStart.Location = new System.Drawing.Point(3, 3);
-            this.checkBoxAutoStart.Name = "checkBoxAutoStart";
-            this.checkBoxAutoStart.Size = new System.Drawing.Size(323, 27);
-            this.checkBoxAutoStart.TabIndex = 2;
-            this.checkBoxAutoStart.Text = "Start With Windows (Not working now)";
-            this.checkBoxAutoStart.UseVisualStyleBackColor = true;
-            this.checkBoxAutoStart.CheckedChanged += new System.EventHandler(this.CheckBoxAutoStart_CheckedChanged);
-            // 
-            // labelBoot
-            // 
-            this.labelBoot.AutoSize = true;
-            this.labelBoot.Enabled = false;
-            this.labelBoot.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelBoot.Location = new System.Drawing.Point(23, 31);
-            this.labelBoot.Name = "labelBoot";
-            this.labelBoot.Size = new System.Drawing.Size(323, 23);
-            this.labelBoot.TabIndex = 4;
-            this.labelBoot.Text = "The application starts with Windows boot";
             // 
             // buttonMakeBackup
             // 
@@ -317,6 +285,7 @@
             // 
             this.tabControl.Controls.Add(this.Main);
             this.tabControl.Controls.Add(this.Backups);
+            this.tabControl.Controls.Add(this.Settings);
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -445,6 +414,49 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Select Backup";
             // 
+            // Settings
+            // 
+            this.Settings.Controls.Add(this.panelStartWithWindow);
+            this.Settings.Location = new System.Drawing.Point(4, 32);
+            this.Settings.Name = "Settings";
+            this.Settings.Padding = new System.Windows.Forms.Padding(3);
+            this.Settings.Size = new System.Drawing.Size(430, 464);
+            this.Settings.TabIndex = 2;
+            this.Settings.Text = "Settings";
+            this.Settings.UseVisualStyleBackColor = true;
+            // 
+            // panelStartWithWindow
+            // 
+            this.panelStartWithWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelStartWithWindow.Controls.Add(this.checkBoxAutoStart);
+            this.panelStartWithWindow.Controls.Add(this.labelBoot);
+            this.panelStartWithWindow.Location = new System.Drawing.Point(8, 6);
+            this.panelStartWithWindow.Name = "panelStartWithWindow";
+            this.panelStartWithWindow.Size = new System.Drawing.Size(412, 64);
+            this.panelStartWithWindow.TabIndex = 9;
+            // 
+            // checkBoxAutoStart
+            // 
+            this.checkBoxAutoStart.AutoSize = true;
+            this.checkBoxAutoStart.Enabled = false;
+            this.checkBoxAutoStart.Location = new System.Drawing.Point(3, 3);
+            this.checkBoxAutoStart.Name = "checkBoxAutoStart";
+            this.checkBoxAutoStart.Size = new System.Drawing.Size(323, 27);
+            this.checkBoxAutoStart.TabIndex = 2;
+            this.checkBoxAutoStart.Text = "Start With Windows (Not working now)";
+            this.checkBoxAutoStart.UseVisualStyleBackColor = true;
+            // 
+            // labelBoot
+            // 
+            this.labelBoot.AutoSize = true;
+            this.labelBoot.Enabled = false;
+            this.labelBoot.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelBoot.Location = new System.Drawing.Point(23, 31);
+            this.labelBoot.Name = "labelBoot";
+            this.labelBoot.Size = new System.Drawing.Size(323, 23);
+            this.labelBoot.TabIndex = 4;
+            this.labelBoot.Text = "The application starts with Windows boot";
+            // 
             // BackupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -468,8 +480,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimer)).EndInit();
             this.panelOptions.ResumeLayout(false);
             this.panelOptions.PerformLayout();
-            this.panelStartWithWindow.ResumeLayout(false);
-            this.panelStartWithWindow.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.Main.ResumeLayout(false);
             this.Main.PerformLayout();
@@ -479,6 +489,9 @@
             this.Backups.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panelBackupManage.ResumeLayout(false);
+            this.Settings.ResumeLayout(false);
+            this.panelStartWithWindow.ResumeLayout(false);
+            this.panelStartWithWindow.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -498,9 +511,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownTimer;
         private System.Windows.Forms.Label labelTimer;
         private System.Windows.Forms.Panel panelOptions;
-        private System.Windows.Forms.Panel panelStartWithWindow;
-        private System.Windows.Forms.CheckBox checkBoxAutoStart;
-        private System.Windows.Forms.Label labelBoot;
         private System.Windows.Forms.Button buttonMakeBackup;
         private System.Windows.Forms.Button buttonStartBackuping;
         private System.Windows.Forms.Button buttonStopBackuping;
@@ -516,6 +526,10 @@
         private System.Windows.Forms.Button buttonDeleteBackup;
         private System.Windows.Forms.Panel panelBackupManage;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TabPage Settings;
+        private System.Windows.Forms.Panel panelStartWithWindow;
+        private System.Windows.Forms.CheckBox checkBoxAutoStart;
+        private System.Windows.Forms.Label labelBoot;
     }
 }
 
