@@ -184,7 +184,7 @@ namespace Simple_Backuper.app
             {
                 string name = (string)backupName;
                 Backup backup = data.GetBackup(name);
-                Thread.Sleep(backup.TimerDelay * 1000);
+                Thread.Sleep(backup.TimerDelay * 1000 * 60);
                 if (!backup.TimerEnabled)
                 {
                     Thread.CurrentThread.Abort();
