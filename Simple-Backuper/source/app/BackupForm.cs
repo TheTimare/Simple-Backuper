@@ -38,13 +38,16 @@ namespace Simple_Backuper.app
             data = AppDataUtil.ReadAppData(Config.DATA_PATH);
             workingTimers = new Dictionary<string, Thread>();
             optionsUpdateDisabled = false;
-            checkBoxAutoStart.Checked = data.AutoStart;
+
             // fill main combobox with names
             foreach(Backup backup in data.Backups)
             {
                 comboBoxBackups.Items.Add(backup.Name);
                 comboBoxBackupsManaging.Items.Add(backup.Name);
             }
+
+            checkBoxAutoStart.Checked = data.AutoStart;
+            checkBoxMinimize.Checked = data.MinimizeOnExit;
         }
 
         #endregion
@@ -291,6 +294,21 @@ namespace Simple_Backuper.app
             }
         }
 
+        // if checked - app will minimize instead of turn off
+        private void CheckBoxMinimize_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxMinimize.Checked)
+            {
+                labelMinimize.Enabled = true;
+                data.MinimizeOnExit = true;
+            }
+            else
+            {
+                labelMinimize.Enabled = false;
+                data.MinimizeOnExit = false;
+            }
+        }
+
         #endregion
 
         #region Util
@@ -414,12 +432,45 @@ namespace Simple_Backuper.app
 
         #endregion
 
-        #region Exit
+        #region Exit And Minimizing
+
+        // checks if window is in taskbar and send it to tray
+        private void BackupForm_Resize(object sender, EventArgs e)
+        {
+            //if the form is minimized  
+            //hide it from the task bar and show the system tray icon
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                notifyIconTray.Visible = true;
+            }
+        }
+
+        // return app back to normal state from tray
+        private void NotifyIconTray_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+            notifyIconTray.Visible = false;
+        }
 
         // save config on closure
         private void BackupForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            foreach(Thread thread in workingTimers.Values)
+            // if user want to minimize
+            if (data.MinimizeOnExit == true)
+            {
+                e.Cancel = true;
+                WindowState = FormWindowState.Minimized;
+                return;
+            }
+
+            SaveOnExit();
+        }
+
+        private void SaveOnExit()
+        {
+            foreach (Thread thread in workingTimers.Values)
             {
                 try
                 {

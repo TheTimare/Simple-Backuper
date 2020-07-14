@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackupForm));
             this.label1 = new System.Windows.Forms.Label();
             this.buttonAddBackup = new System.Windows.Forms.Button();
@@ -59,9 +60,13 @@
             this.buttonDeleteBackupStamp = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.Settings = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.checkBoxMinimize = new System.Windows.Forms.CheckBox();
+            this.labelMinimize = new System.Windows.Forms.Label();
             this.panelStartWithWindow = new System.Windows.Forms.Panel();
             this.checkBoxAutoStart = new System.Windows.Forms.CheckBox();
             this.labelBoot = new System.Windows.Forms.Label();
+            this.notifyIconTray = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBackupsAmount)).BeginInit();
             this.panelBackupsAmount.SuspendLayout();
             this.panelTimer.SuspendLayout();
@@ -75,6 +80,7 @@
             this.panel1.SuspendLayout();
             this.panelBackupManage.SuspendLayout();
             this.Settings.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panelStartWithWindow.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -427,6 +433,7 @@
             // 
             // Settings
             // 
+            this.Settings.Controls.Add(this.panel3);
             this.Settings.Controls.Add(this.panelStartWithWindow);
             this.Settings.Location = new System.Drawing.Point(4, 32);
             this.Settings.Name = "Settings";
@@ -435,6 +442,37 @@
             this.Settings.TabIndex = 2;
             this.Settings.Text = "Settings";
             this.Settings.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.checkBoxMinimize);
+            this.panel3.Controls.Add(this.labelMinimize);
+            this.panel3.Location = new System.Drawing.Point(8, 76);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(412, 81);
+            this.panel3.TabIndex = 10;
+            // 
+            // checkBoxMinimize
+            // 
+            this.checkBoxMinimize.AutoSize = true;
+            this.checkBoxMinimize.Location = new System.Drawing.Point(3, 3);
+            this.checkBoxMinimize.Name = "checkBoxMinimize";
+            this.checkBoxMinimize.Size = new System.Drawing.Size(156, 27);
+            this.checkBoxMinimize.TabIndex = 2;
+            this.checkBoxMinimize.Text = "Minimize on exit";
+            this.checkBoxMinimize.UseVisualStyleBackColor = true;
+            this.checkBoxMinimize.CheckedChanged += new System.EventHandler(this.CheckBoxMinimize_CheckedChanged);
+            // 
+            // labelMinimize
+            // 
+            this.labelMinimize.Enabled = false;
+            this.labelMinimize.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelMinimize.Location = new System.Drawing.Point(23, 31);
+            this.labelMinimize.Name = "labelMinimize";
+            this.labelMinimize.Size = new System.Drawing.Size(370, 49);
+            this.labelMinimize.TabIndex = 4;
+            this.labelMinimize.Text = "The app minimizes to tray when you press the exit button instead of turning off";
             // 
             // panelStartWithWindow
             // 
@@ -468,6 +506,15 @@
             this.labelBoot.TabIndex = 4;
             this.labelBoot.Text = "The application starts with Windows boot";
             // 
+            // notifyIconTray
+            // 
+            this.notifyIconTray.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIconTray.BalloonTipText = "App that allows you to create backups of directories";
+            this.notifyIconTray.BalloonTipTitle = "Description";
+            this.notifyIconTray.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconTray.Icon")));
+            this.notifyIconTray.Text = "Simple Backuper";
+            this.notifyIconTray.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIconTray_MouseDoubleClick);
+            // 
             // BackupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -483,6 +530,7 @@
             this.Name = "BackupForm";
             this.Text = "Simple Backuper";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BackupForm_FormClosing);
+            this.Resize += new System.EventHandler(this.BackupForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBackupsAmount)).EndInit();
             this.panelBackupsAmount.ResumeLayout(false);
             this.panelBackupsAmount.PerformLayout();
@@ -502,6 +550,8 @@
             this.panel1.ResumeLayout(false);
             this.panelBackupManage.ResumeLayout(false);
             this.Settings.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panelStartWithWindow.ResumeLayout(false);
             this.panelStartWithWindow.PerformLayout();
             this.ResumeLayout(false);
@@ -542,6 +592,10 @@
         private System.Windows.Forms.ComboBox comboBoxBackups;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button buttonCreateBackupStamp;
+        private System.Windows.Forms.NotifyIcon notifyIconTray;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.CheckBox checkBoxMinimize;
+        private System.Windows.Forms.Label labelMinimize;
     }
 }
 

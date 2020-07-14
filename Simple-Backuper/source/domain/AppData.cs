@@ -9,11 +9,13 @@ namespace Simple_Backuper.domain
         // stores all backups data
         public List<Backup> Backups { get; }
         public bool AutoStart { get; set; }
+        public bool MinimizeOnExit { get; set; }
 
         public AppData()
         {
             Backups = new List<Backup>();
             AutoStart = false;
+            MinimizeOnExit = false;
         }
 
         public Backup GetBackup(string backupName)
