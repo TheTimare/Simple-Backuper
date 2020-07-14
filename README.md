@@ -1,4 +1,4 @@
 # Simple-Backuper
-Just allow to backup some directories or files and manage them using schedule and timers.
+It simply allows you to back up and manage some directories or files using schedules and timers.
 
 ###### @Timofey Ivanov. Free Use
