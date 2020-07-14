@@ -67,6 +67,13 @@
             this.checkBoxAutoStart = new System.Windows.Forms.CheckBox();
             this.labelBoot = new System.Windows.Forms.Label();
             this.notifyIconTray = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Open_App = new System.Windows.Forms.ToolStripMenuItem();
+            this.Exit_App = new System.Windows.Forms.ToolStripMenuItem();
+            this.TimerSeparatorTop = new System.Windows.Forms.ToolStripSeparator();
+            this.TimerSeparatorBottom = new System.Windows.Forms.ToolStripSeparator();
+            this.Start_Timers = new System.Windows.Forms.ToolStripMenuItem();
+            this.Stop_Timers = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBackupsAmount)).BeginInit();
             this.panelBackupsAmount.SuspendLayout();
             this.panelTimer.SuspendLayout();
@@ -82,6 +89,7 @@
             this.Settings.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panelStartWithWindow.SuspendLayout();
+            this.contextMenuStripTray.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -513,7 +521,60 @@
             this.notifyIconTray.BalloonTipTitle = "Description";
             this.notifyIconTray.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconTray.Icon")));
             this.notifyIconTray.Text = "Simple Backuper";
+            this.notifyIconTray.Visible = true;
+            this.notifyIconTray.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIconTray_MouseClick);
             this.notifyIconTray.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIconTray_MouseDoubleClick);
+            // 
+            // contextMenuStripTray
+            // 
+            this.contextMenuStripTray.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStripTray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Open_App,
+            this.TimerSeparatorTop,
+            this.Start_Timers,
+            this.Stop_Timers,
+            this.TimerSeparatorBottom,
+            this.Exit_App});
+            this.contextMenuStripTray.Name = "contextMenuStripTray";
+            this.contextMenuStripTray.Size = new System.Drawing.Size(233, 112);
+            // 
+            // Open_App
+            // 
+            this.Open_App.Name = "Open_App";
+            this.Open_App.Size = new System.Drawing.Size(232, 24);
+            this.Open_App.Text = "Open App";
+            this.Open_App.Click += new System.EventHandler(this.Open_App_Click);
+            // 
+            // Exit_App
+            // 
+            this.Exit_App.Name = "Exit_App";
+            this.Exit_App.Size = new System.Drawing.Size(232, 24);
+            this.Exit_App.Text = "Exit";
+            this.Exit_App.Click += new System.EventHandler(this.Exit_App_Click);
+            // 
+            // TimerSeparatorTop
+            // 
+            this.TimerSeparatorTop.Name = "TimerSeparatorTop";
+            this.TimerSeparatorTop.Size = new System.Drawing.Size(229, 6);
+            // 
+            // TimerSeparatorBottom
+            // 
+            this.TimerSeparatorBottom.Name = "TimerSeparatorBottom";
+            this.TimerSeparatorBottom.Size = new System.Drawing.Size(229, 6);
+            // 
+            // Start_Timers
+            // 
+            this.Start_Timers.Name = "Start_Timers";
+            this.Start_Timers.Size = new System.Drawing.Size(232, 24);
+            this.Start_Timers.Text = "Start all enabled timers";
+            this.Start_Timers.Click += new System.EventHandler(this.Start_Timers_Click);
+            // 
+            // Stop_Timers
+            // 
+            this.Stop_Timers.Name = "Stop_Timers";
+            this.Stop_Timers.Size = new System.Drawing.Size(232, 24);
+            this.Stop_Timers.Text = "Stop all timers";
+            this.Stop_Timers.Click += new System.EventHandler(this.Stop_Timers_Click);
             // 
             // BackupForm
             // 
@@ -554,6 +615,7 @@
             this.panel3.PerformLayout();
             this.panelStartWithWindow.ResumeLayout(false);
             this.panelStartWithWindow.PerformLayout();
+            this.contextMenuStripTray.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -596,6 +658,13 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.CheckBox checkBoxMinimize;
         private System.Windows.Forms.Label labelMinimize;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripTray;
+        private System.Windows.Forms.ToolStripMenuItem Open_App;
+        private System.Windows.Forms.ToolStripMenuItem Exit_App;
+        private System.Windows.Forms.ToolStripSeparator TimerSeparatorTop;
+        private System.Windows.Forms.ToolStripMenuItem Start_Timers;
+        private System.Windows.Forms.ToolStripMenuItem Stop_Timers;
+        private System.Windows.Forms.ToolStripSeparator TimerSeparatorBottom;
     }
 }
 

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -22,6 +23,7 @@ namespace Simple_Backuper.app
 
         // this var is needed to update values after changing the backup
         private bool optionsUpdateDisabled;
+        private bool exitFromTray;
 
         #endregion
 
@@ -38,6 +40,7 @@ namespace Simple_Backuper.app
             data = AppDataUtil.ReadAppData(Config.DATA_PATH);
             workingTimers = new Dictionary<string, Thread>();
             optionsUpdateDisabled = false;
+            exitFromTray = false;
 
             // fill main combobox with names
             foreach(Backup backup in data.Backups)
@@ -48,6 +51,8 @@ namespace Simple_Backuper.app
 
             checkBoxAutoStart.Checked = data.AutoStart;
             checkBoxMinimize.Checked = data.MinimizeOnExit;
+
+            notifyIconTray.ContextMenuStrip = contextMenuStripTray;
         }
 
         #endregion
@@ -432,17 +437,15 @@ namespace Simple_Backuper.app
 
         #endregion
 
-        #region Exit And Minimizing
+        #region Tray
 
         // checks if window is in taskbar and send it to tray
         private void BackupForm_Resize(object sender, EventArgs e)
         {
-            //if the form is minimized  
-            //hide it from the task bar and show the system tray icon
+            //if the form is minimized  hide it from the task bar
             if (WindowState == FormWindowState.Minimized)
             {
                 Hide();
-                notifyIconTray.Visible = true;
             }
         }
 
@@ -451,14 +454,87 @@ namespace Simple_Backuper.app
         {
             Show();
             WindowState = FormWindowState.Normal;
+        }
+
+        // Open context menu with click on tray icon
+        private void NotifyIconTray_MouseClick(object sender, MouseEventArgs e)
+        {
+            // kinda strange realization of this method (but it works) (usual methods are buggy)
+            MethodInfo mi = typeof(NotifyIcon).GetMethod("ShowContextMenu"
+                , BindingFlags.Instance | BindingFlags.NonPublic);
+            mi.Invoke(notifyIconTray, null);
+        }
+
+        /*---MENU ITEMS---*/
+
+        private void Open_App_Click(object sender, EventArgs e)
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
             notifyIconTray.Visible = false;
         }
+
+        private void Start_Timers_Click(object sender, EventArgs e)
+        {
+            foreach(Backup backup in data.Backups)
+            {
+                if (backup.TimerEnabled && !workingTimers.ContainsKey(backup.Name))
+                {
+                    Thread backupCycle = new Thread(new ParameterizedThreadStart(StartTimerCycle));
+                    // add thread to working threads list and start it
+                    workingTimers.Add(backup.Name, backupCycle);
+                    backupCycle.Start(backup.Name);
+                    if (backup.Name.Equals(mainSelectedBackup))
+                    {
+                        buttonStartBackuping.Enabled = false;
+                        buttonStopBackuping.Enabled = true;
+                    }
+                }
+            }
+        }
+
+        private void Stop_Timers_Click(object sender, EventArgs e)
+        {
+            // find all working timers
+            foreach(Backup backup in data.Backups)
+            {
+                if (workingTimers.ContainsKey(backup.Name))
+                {
+                    try
+                    {
+                        // stop timer thread
+                        workingTimers[backup.Name].Abort();
+                    }
+                    catch (Exception) { }
+                    // remove thread from list of working timers
+                    workingTimers.Remove(backup.Name);
+                    // switch buttons
+                    if (backup.Name.Equals(mainSelectedBackup))
+                    {
+                        buttonStartBackuping.Enabled = true;
+                        buttonStopBackuping.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void Exit_App_Click(object sender, EventArgs e)
+        {
+            exitFromTray = true;
+            Application.Exit();
+        }
+
+        /*---MENU ITEMS---*/
+
+        #endregion
+
+        #region Exit And Minimizing on exit
 
         // save config on closure
         private void BackupForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // if user want to minimize
-            if (data.MinimizeOnExit == true)
+            if (data.MinimizeOnExit == true && !exitFromTray)
             {
                 e.Cancel = true;
                 WindowState = FormWindowState.Minimized;
@@ -481,6 +557,7 @@ namespace Simple_Backuper.app
             workingTimers.Clear();
             AppDataUtil.SaveAppData(data, Config.DATA_PATH);
         }
+
 
         #endregion
     }
