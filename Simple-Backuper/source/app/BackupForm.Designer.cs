@@ -1,4 +1,4 @@
-﻿namespace Simple_Backuper
+﻿namespace Simple_Backuper.app
 {
     partial class BackupForm
     {
@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackupForm));
-            this.textBoxBackupDirectory = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonBackupPath = new System.Windows.Forms.Button();
+            this.buttonAddBackup = new System.Windows.Forms.Button();
             this.numericUpDownBackupsAmount = new System.Windows.Forms.NumericUpDown();
             this.checkBoxBackupsAmount = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,20 +41,22 @@
             this.numericUpDownTimer = new System.Windows.Forms.NumericUpDown();
             this.labelTimer = new System.Windows.Forms.Label();
             this.panelOptions = new System.Windows.Forms.Panel();
-            this.buttonMakeBackup = new System.Windows.Forms.Button();
             this.buttonStartBackuping = new System.Windows.Forms.Button();
             this.buttonStopBackuping = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.Main = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.comboBoxBackups = new System.Windows.Forms.ComboBox();
             this.panelControls = new System.Windows.Forms.Panel();
             this.Backups = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBoxBackups = new System.Windows.Forms.ComboBox();
+            this.comboBoxBackupsManaging = new System.Windows.Forms.ComboBox();
             this.panelBackupManage = new System.Windows.Forms.Panel();
+            this.buttonCreateBackupStamp = new System.Windows.Forms.Button();
             this.listViewBackups = new System.Windows.Forms.ListView();
-            this.buttonReplace = new System.Windows.Forms.Button();
-            this.buttonDeleteBackup = new System.Windows.Forms.Button();
+            this.buttonReplaceSourceWithStamp = new System.Windows.Forms.Button();
+            this.buttonDeleteBackupStamp = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.Settings = new System.Windows.Forms.TabPage();
             this.panelStartWithWindow = new System.Windows.Forms.Panel();
@@ -68,6 +69,7 @@
             this.panelOptions.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.Main.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panelControls.SuspendLayout();
             this.Backups.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -76,43 +78,30 @@
             this.panelStartWithWindow.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBoxBackupDirectory
-            // 
-            this.textBoxBackupDirectory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.textBoxBackupDirectory.Font = new System.Drawing.Font("Open Sans Light", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxBackupDirectory.Location = new System.Drawing.Point(8, 29);
-            this.textBoxBackupDirectory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBoxBackupDirectory.Multiline = true;
-            this.textBoxBackupDirectory.Name = "textBoxBackupDirectory";
-            this.textBoxBackupDirectory.ReadOnly = true;
-            this.textBoxBackupDirectory.Size = new System.Drawing.Size(306, 32);
-            this.textBoxBackupDirectory.TabIndex = 0;
-            this.textBoxBackupDirectory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(8, 3);
+            this.label1.Location = new System.Drawing.Point(4, 4);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 23);
+            this.label1.Size = new System.Drawing.Size(74, 23);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Directory to Backup";
+            this.label1.Text = "Backups";
             // 
-            // buttonBackupPath
+            // buttonAddBackup
             // 
-            this.buttonBackupPath.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonBackupPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonBackupPath.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonBackupPath.Location = new System.Drawing.Point(313, 29);
-            this.buttonBackupPath.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonBackupPath.Name = "buttonBackupPath";
-            this.buttonBackupPath.Size = new System.Drawing.Size(107, 32);
-            this.buttonBackupPath.TabIndex = 2;
-            this.buttonBackupPath.Text = "Choose Path";
-            this.buttonBackupPath.UseVisualStyleBackColor = false;
-            this.buttonBackupPath.Click += new System.EventHandler(this.ButtonBackupPath_Click);
+            this.buttonAddBackup.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonAddBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddBackup.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAddBackup.Location = new System.Drawing.Point(313, 30);
+            this.buttonAddBackup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonAddBackup.Name = "buttonAddBackup";
+            this.buttonAddBackup.Size = new System.Drawing.Size(107, 38);
+            this.buttonAddBackup.TabIndex = 2;
+            this.buttonAddBackup.Text = "Add Backup";
+            this.buttonAddBackup.UseVisualStyleBackColor = false;
+            this.buttonAddBackup.Click += new System.EventHandler(this.ButtonAddBackup_Click);
             // 
             // numericUpDownBackupsAmount
             // 
@@ -126,15 +115,16 @@
             0,
             0,
             0});
+            this.numericUpDownBackupsAmount.ValueChanged += new System.EventHandler(this.NumericUpDowns_ValueChanged);
             // 
             // checkBoxBackupsAmount
             // 
             this.checkBoxBackupsAmount.AutoSize = true;
             this.checkBoxBackupsAmount.Location = new System.Drawing.Point(3, 3);
             this.checkBoxBackupsAmount.Name = "checkBoxBackupsAmount";
-            this.checkBoxBackupsAmount.Size = new System.Drawing.Size(225, 27);
+            this.checkBoxBackupsAmount.Size = new System.Drawing.Size(278, 27);
             this.checkBoxBackupsAmount.TabIndex = 2;
-            this.checkBoxBackupsAmount.Text = "Custom Backups Amount";
+            this.checkBoxBackupsAmount.Text = "Custom Backup Stamps Amount";
             this.checkBoxBackupsAmount.UseVisualStyleBackColor = true;
             this.checkBoxBackupsAmount.CheckedChanged += new System.EventHandler(this.CheckBoxBackupsAmount_CheckedChanged);
             // 
@@ -154,9 +144,9 @@
             this.labelAmount.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelAmount.Location = new System.Drawing.Point(23, 31);
             this.labelAmount.Name = "labelAmount";
-            this.labelAmount.Size = new System.Drawing.Size(270, 23);
+            this.labelAmount.Size = new System.Drawing.Size(263, 23);
             this.labelAmount.TabIndex = 4;
-            this.labelAmount.Text = "Choose new max backups amount";
+            this.labelAmount.Text = "Choose new max stamps amount";
             // 
             // panelBackupsAmount
             // 
@@ -213,6 +203,7 @@
             0,
             0,
             0});
+            this.numericUpDownTimer.ValueChanged += new System.EventHandler(this.NumericUpDowns_ValueChanged);
             // 
             // labelTimer
             // 
@@ -231,31 +222,19 @@
             this.panelOptions.Controls.Add(this.panelTimer);
             this.panelOptions.Controls.Add(this.panelBackupsAmount);
             this.panelOptions.Enabled = false;
-            this.panelOptions.Location = new System.Drawing.Point(8, 67);
+            this.panelOptions.Location = new System.Drawing.Point(8, 74);
             this.panelOptions.Name = "panelOptions";
             this.panelOptions.Size = new System.Drawing.Size(412, 174);
             this.panelOptions.TabIndex = 8;
-            // 
-            // buttonMakeBackup
-            // 
-            this.buttonMakeBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMakeBackup.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonMakeBackup.Location = new System.Drawing.Point(0, 31);
-            this.buttonMakeBackup.Name = "buttonMakeBackup";
-            this.buttonMakeBackup.Size = new System.Drawing.Size(122, 45);
-            this.buttonMakeBackup.TabIndex = 9;
-            this.buttonMakeBackup.Text = "Make Backup";
-            this.buttonMakeBackup.UseVisualStyleBackColor = true;
-            this.buttonMakeBackup.Click += new System.EventHandler(this.ButtonMakeBackup_Click);
             // 
             // buttonStartBackuping
             // 
             this.buttonStartBackuping.Enabled = false;
             this.buttonStartBackuping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonStartBackuping.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonStartBackuping.Location = new System.Drawing.Point(135, 31);
+            this.buttonStartBackuping.Location = new System.Drawing.Point(0, 31);
             this.buttonStartBackuping.Name = "buttonStartBackuping";
-            this.buttonStartBackuping.Size = new System.Drawing.Size(140, 45);
+            this.buttonStartBackuping.Size = new System.Drawing.Size(201, 45);
             this.buttonStartBackuping.TabIndex = 10;
             this.buttonStartBackuping.Text = "Start Backuping";
             this.buttonStartBackuping.UseVisualStyleBackColor = true;
@@ -266,9 +245,9 @@
             this.buttonStopBackuping.Enabled = false;
             this.buttonStopBackuping.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonStopBackuping.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonStopBackuping.Location = new System.Drawing.Point(274, 31);
+            this.buttonStopBackuping.Location = new System.Drawing.Point(200, 31);
             this.buttonStopBackuping.Name = "buttonStopBackuping";
-            this.buttonStopBackuping.Size = new System.Drawing.Size(138, 45);
+            this.buttonStopBackuping.Size = new System.Drawing.Size(212, 45);
             this.buttonStopBackuping.TabIndex = 11;
             this.buttonStopBackuping.Text = "Stop Backuping";
             this.buttonStopBackuping.UseVisualStyleBackColor = true;
@@ -293,14 +272,13 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(438, 500);
             this.tabControl.TabIndex = 13;
-            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
             // 
             // Main
             // 
+            this.Main.Controls.Add(this.panel2);
             this.Main.Controls.Add(this.panelControls);
             this.Main.Controls.Add(this.label1);
-            this.Main.Controls.Add(this.textBoxBackupDirectory);
-            this.Main.Controls.Add(this.buttonBackupPath);
+            this.Main.Controls.Add(this.buttonAddBackup);
             this.Main.Controls.Add(this.panelOptions);
             this.Main.Location = new System.Drawing.Point(4, 32);
             this.Main.Name = "Main";
@@ -310,12 +288,31 @@
             this.Main.Text = "Main";
             this.Main.UseVisualStyleBackColor = true;
             // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.comboBoxBackups);
+            this.panel2.Location = new System.Drawing.Point(8, 30);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(308, 38);
+            this.panel2.TabIndex = 15;
+            // 
+            // comboBoxBackups
+            // 
+            this.comboBoxBackups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBackups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxBackups.FormattingEnabled = true;
+            this.comboBoxBackups.Location = new System.Drawing.Point(3, 3);
+            this.comboBoxBackups.Name = "comboBoxBackups";
+            this.comboBoxBackups.Size = new System.Drawing.Size(300, 31);
+            this.comboBoxBackups.TabIndex = 14;
+            this.comboBoxBackups.SelectedIndexChanged += new System.EventHandler(this.ComboBoxBackups_SelectedIndexChanged);
+            // 
             // panelControls
             // 
             this.panelControls.Controls.Add(this.label7);
             this.panelControls.Controls.Add(this.buttonStartBackuping);
             this.panelControls.Controls.Add(this.buttonStopBackuping);
-            this.panelControls.Controls.Add(this.buttonMakeBackup);
             this.panelControls.Enabled = false;
             this.panelControls.Location = new System.Drawing.Point(8, 372);
             this.panelControls.Name = "panelControls";
@@ -338,34 +335,47 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.comboBoxBackups);
+            this.panel1.Controls.Add(this.comboBoxBackupsManaging);
             this.panel1.Location = new System.Drawing.Point(144, 6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(254, 38);
             this.panel1.TabIndex = 6;
             // 
-            // comboBoxBackups
+            // comboBoxBackupsManaging
             // 
-            this.comboBoxBackups.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.comboBoxBackups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxBackups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxBackups.FormattingEnabled = true;
-            this.comboBoxBackups.Location = new System.Drawing.Point(-1, 3);
-            this.comboBoxBackups.Name = "comboBoxBackups";
-            this.comboBoxBackups.Size = new System.Drawing.Size(254, 31);
-            this.comboBoxBackups.TabIndex = 1;
-            this.comboBoxBackups.SelectedValueChanged += new System.EventHandler(this.ComboBoxBackups_SelectedValueChanged);
+            this.comboBoxBackupsManaging.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.comboBoxBackupsManaging.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBackupsManaging.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxBackupsManaging.FormattingEnabled = true;
+            this.comboBoxBackupsManaging.Location = new System.Drawing.Point(-1, 3);
+            this.comboBoxBackupsManaging.Name = "comboBoxBackupsManaging";
+            this.comboBoxBackupsManaging.Size = new System.Drawing.Size(254, 31);
+            this.comboBoxBackupsManaging.TabIndex = 1;
+            this.comboBoxBackupsManaging.SelectedValueChanged += new System.EventHandler(this.ComboBoxBackupsManaging_SelectedValueChanged);
             // 
             // panelBackupManage
             // 
+            this.panelBackupManage.Controls.Add(this.buttonCreateBackupStamp);
             this.panelBackupManage.Controls.Add(this.listViewBackups);
-            this.panelBackupManage.Controls.Add(this.buttonReplace);
-            this.panelBackupManage.Controls.Add(this.buttonDeleteBackup);
+            this.panelBackupManage.Controls.Add(this.buttonReplaceSourceWithStamp);
+            this.panelBackupManage.Controls.Add(this.buttonDeleteBackupStamp);
             this.panelBackupManage.Enabled = false;
             this.panelBackupManage.Location = new System.Drawing.Point(31, 42);
             this.panelBackupManage.Name = "panelBackupManage";
             this.panelBackupManage.Size = new System.Drawing.Size(381, 426);
             this.panelBackupManage.TabIndex = 5;
+            // 
+            // buttonCreateBackupStamp
+            // 
+            this.buttonCreateBackupStamp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCreateBackupStamp.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCreateBackupStamp.Location = new System.Drawing.Point(0, 378);
+            this.buttonCreateBackupStamp.Name = "buttonCreateBackupStamp";
+            this.buttonCreateBackupStamp.Size = new System.Drawing.Size(125, 36);
+            this.buttonCreateBackupStamp.TabIndex = 10;
+            this.buttonCreateBackupStamp.Text = "Create";
+            this.buttonCreateBackupStamp.UseVisualStyleBackColor = true;
+            this.buttonCreateBackupStamp.Click += new System.EventHandler(this.ButtonCreateBackupStamp_Click);
             // 
             // listViewBackups
             // 
@@ -373,7 +383,7 @@
             this.listViewBackups.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listViewBackups.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listViewBackups.HideSelection = false;
-            this.listViewBackups.Location = new System.Drawing.Point(0, 5);
+            this.listViewBackups.Location = new System.Drawing.Point(0, 8);
             this.listViewBackups.MultiSelect = false;
             this.listViewBackups.Name = "listViewBackups";
             this.listViewBackups.Size = new System.Drawing.Size(367, 364);
@@ -381,31 +391,30 @@
             this.listViewBackups.TileSize = new System.Drawing.Size(328, 50);
             this.listViewBackups.UseCompatibleStateImageBehavior = false;
             this.listViewBackups.View = System.Windows.Forms.View.SmallIcon;
-            this.listViewBackups.VisibleChanged += new System.EventHandler(this.ListViewBackups_VisibleChanged);
             // 
-            // buttonReplace
+            // buttonReplaceSourceWithStamp
             // 
-            this.buttonReplace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonReplace.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonReplace.Location = new System.Drawing.Point(111, 375);
-            this.buttonReplace.Name = "buttonReplace";
-            this.buttonReplace.Size = new System.Drawing.Size(256, 36);
-            this.buttonReplace.TabIndex = 4;
-            this.buttonReplace.Text = "Replace Original With Backup";
-            this.buttonReplace.UseVisualStyleBackColor = true;
-            this.buttonReplace.Click += new System.EventHandler(this.ButtonReplace_Click);
+            this.buttonReplaceSourceWithStamp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReplaceSourceWithStamp.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonReplaceSourceWithStamp.Location = new System.Drawing.Point(246, 378);
+            this.buttonReplaceSourceWithStamp.Name = "buttonReplaceSourceWithStamp";
+            this.buttonReplaceSourceWithStamp.Size = new System.Drawing.Size(121, 36);
+            this.buttonReplaceSourceWithStamp.TabIndex = 4;
+            this.buttonReplaceSourceWithStamp.Text = "Replace";
+            this.buttonReplaceSourceWithStamp.UseVisualStyleBackColor = true;
+            this.buttonReplaceSourceWithStamp.Click += new System.EventHandler(this.ButtonReplaceSourceWithStamp_Click);
             // 
-            // buttonDeleteBackup
+            // buttonDeleteBackupStamp
             // 
-            this.buttonDeleteBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDeleteBackup.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDeleteBackup.Location = new System.Drawing.Point(0, 375);
-            this.buttonDeleteBackup.Name = "buttonDeleteBackup";
-            this.buttonDeleteBackup.Size = new System.Drawing.Size(113, 36);
-            this.buttonDeleteBackup.TabIndex = 3;
-            this.buttonDeleteBackup.Text = "Delete";
-            this.buttonDeleteBackup.UseVisualStyleBackColor = true;
-            this.buttonDeleteBackup.Click += new System.EventHandler(this.ButtonDeleteBackup_Click);
+            this.buttonDeleteBackupStamp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDeleteBackupStamp.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDeleteBackupStamp.Location = new System.Drawing.Point(123, 378);
+            this.buttonDeleteBackupStamp.Name = "buttonDeleteBackupStamp";
+            this.buttonDeleteBackupStamp.Size = new System.Drawing.Size(124, 36);
+            this.buttonDeleteBackupStamp.TabIndex = 3;
+            this.buttonDeleteBackupStamp.Text = "Delete";
+            this.buttonDeleteBackupStamp.UseVisualStyleBackColor = true;
+            this.buttonDeleteBackupStamp.Click += new System.EventHandler(this.ButtonDeleteBackupStamp_Click);
             // 
             // label8
             // 
@@ -443,9 +452,9 @@
             this.checkBoxAutoStart.Enabled = false;
             this.checkBoxAutoStart.Location = new System.Drawing.Point(3, 3);
             this.checkBoxAutoStart.Name = "checkBoxAutoStart";
-            this.checkBoxAutoStart.Size = new System.Drawing.Size(323, 27);
+            this.checkBoxAutoStart.Size = new System.Drawing.Size(347, 27);
             this.checkBoxAutoStart.TabIndex = 2;
-            this.checkBoxAutoStart.Text = "Start With Windows (Not working now)";
+            this.checkBoxAutoStart.Text = "Start With Windows (Temporary disabled)";
             this.checkBoxAutoStart.UseVisualStyleBackColor = true;
             // 
             // labelBoot
@@ -485,6 +494,7 @@
             this.tabControl.ResumeLayout(false);
             this.Main.ResumeLayout(false);
             this.Main.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.panelControls.ResumeLayout(false);
             this.panelControls.PerformLayout();
             this.Backups.ResumeLayout(false);
@@ -499,10 +509,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBoxBackupDirectory;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button buttonBackupPath;
+        private System.Windows.Forms.Button buttonAddBackup;
         private System.Windows.Forms.NumericUpDown numericUpDownBackupsAmount;
         private System.Windows.Forms.CheckBox checkBoxBackupsAmount;
         private System.Windows.Forms.Label label3;
@@ -513,7 +521,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownTimer;
         private System.Windows.Forms.Label labelTimer;
         private System.Windows.Forms.Panel panelOptions;
-        private System.Windows.Forms.Button buttonMakeBackup;
         private System.Windows.Forms.Button buttonStartBackuping;
         private System.Windows.Forms.Button buttonStopBackuping;
         private System.Windows.Forms.Label label7;
@@ -522,16 +529,19 @@
         private System.Windows.Forms.TabPage Backups;
         private System.Windows.Forms.Panel panelControls;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBoxBackups;
+        private System.Windows.Forms.ComboBox comboBoxBackupsManaging;
         private System.Windows.Forms.ListView listViewBackups;
-        private System.Windows.Forms.Button buttonReplace;
-        private System.Windows.Forms.Button buttonDeleteBackup;
+        private System.Windows.Forms.Button buttonReplaceSourceWithStamp;
+        private System.Windows.Forms.Button buttonDeleteBackupStamp;
         private System.Windows.Forms.Panel panelBackupManage;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabPage Settings;
         private System.Windows.Forms.Panel panelStartWithWindow;
         private System.Windows.Forms.CheckBox checkBoxAutoStart;
         private System.Windows.Forms.Label labelBoot;
+        private System.Windows.Forms.ComboBox comboBoxBackups;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button buttonCreateBackupStamp;
     }
 }
 

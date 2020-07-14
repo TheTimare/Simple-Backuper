@@ -46,18 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackupData.cs" />
-    <Compile Include="BackupForm.cs">
+    <Compile Include="source\domain\Backup.cs" />
+    <Compile Include="source\app\BackupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BackupForm.Designer.cs">
+    <Compile Include="source\app\BackupForm.Designer.cs">
       <DependentUpon>BackupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Config.cs" />
-    <Compile Include="DirectoryUtil.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="source\domain\Config.cs" />
+    <Compile Include="source\util\AppDataUtil.cs" />
+    <Compile Include="source\domain\AppData.cs" />
+    <Compile Include="source\util\DirectoryUtil.cs" />
+    <Compile Include="source\app\Start.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BackupForm.resx">
+    <EmbeddedResource Include="source\app\BackupForm.resx">
       <DependentUpon>BackupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -82,5 +84,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Simple_Backuper
+namespace Simple_Backuper.app
 {
-    static class Program
+    static class Start
     {
         // Import dll to make process dpi aware
         [System.Runtime.InteropServices.DllImport("user32.dll")]

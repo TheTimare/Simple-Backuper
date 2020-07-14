@@ -1,8 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 
-namespace Simple_Backuper
+namespace Simple_Backuper.util
 {
     class DirectoryUtil
     {
@@ -44,6 +43,7 @@ namespace Simple_Backuper
             }
         }
 
+        // gets last path part
         public static string GetDirectoryName(string path)
         {
             string[] splittedPath = path.Split('\\');
