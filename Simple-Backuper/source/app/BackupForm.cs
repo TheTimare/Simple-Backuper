@@ -1,4 +1,5 @@
-﻿using Simple_Backuper.domain;
+﻿using Microsoft.Win32;
+using Simple_Backuper.domain;
 using Simple_Backuper.util;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,7 @@ namespace Simple_Backuper.app
             data = AppDataUtil.ReadAppData(Config.DATA_PATH);
             workingTimers = new Dictionary<string, Thread>();
             optionsUpdateDisabled = false;
+            checkBoxAutoStart.Checked = data.AutoStart;
             // fill main combobox with names
             foreach(Backup backup in data.Backups)
             {
@@ -140,19 +142,6 @@ namespace Simple_Backuper.app
             UpdateBackupOptions(mainSelectedBackup);
         }
 
-        private void CheckBoxAutoStart_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxAutoStart.Checked)
-            {
-                labelBoot.Enabled = true;
-            }
-            else
-            {
-                labelBoot.Enabled = false;
-            }
-            UpdateBackupOptions(mainSelectedBackup);
-        }
-
         private void NumericUpDowns_ValueChanged(object sender, EventArgs e)
         {
             UpdateBackupOptions(mainSelectedBackup);
@@ -160,7 +149,7 @@ namespace Simple_Backuper.app
 
         #endregion
 
-        #region backup Timer
+        #region Backup Timer
 
         private void ButtonStartBackuping_Click(object sender, EventArgs e)
         {
@@ -281,6 +270,29 @@ namespace Simple_Backuper.app
 
         #endregion
 
+        #region Settings
+
+        // if checked - writes app to autostart
+        private void CheckBoxAutoStart_CheckedChanged(object sender, EventArgs e)
+        {
+            RegistryKey registryKey = Registry.CurrentUser
+                .OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (checkBoxAutoStart.Checked)
+            {
+                labelBoot.Enabled = true;
+                registryKey.SetValue(Config.APP_NAME, Application.ExecutablePath);
+                data.AutoStart = true;
+            }
+            else
+            {
+                data.AutoStart = false;
+                labelBoot.Enabled = false;
+                registryKey.DeleteValue(Config.APP_NAME);
+            }
+        }
+
+        #endregion
+
         #region Util
 
         private void AddBackup(Backup backup)
@@ -323,6 +335,8 @@ namespace Simple_Backuper.app
             // copy source directory to backup directory named by time
             DirectoryUtil.DirectoryCopy(backup.SourcePath, backupPath + "\\" + currentTimeStr, true);
             UpdateListView();
+            // Update app data
+            AppDataUtil.SaveAppData(data, Config.DATA_PATH);
         }
 
         private void DeleteBackupStamp(string backupName, string stamp)

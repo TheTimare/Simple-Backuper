@@ -5,5 +5,6 @@ namespace Simple_Backuper.domain
     {
         public static string DATA_PATH = ".\\appdata.dat";
         public static string STORAGE_PATH = ".\\storage";
+        public static string APP_NAME = "Simple-Backuper";
     }
 }

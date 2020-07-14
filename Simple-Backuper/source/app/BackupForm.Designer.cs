@@ -449,13 +449,13 @@
             // checkBoxAutoStart
             // 
             this.checkBoxAutoStart.AutoSize = true;
-            this.checkBoxAutoStart.Enabled = false;
             this.checkBoxAutoStart.Location = new System.Drawing.Point(3, 3);
             this.checkBoxAutoStart.Name = "checkBoxAutoStart";
-            this.checkBoxAutoStart.Size = new System.Drawing.Size(347, 27);
+            this.checkBoxAutoStart.Size = new System.Drawing.Size(181, 27);
             this.checkBoxAutoStart.TabIndex = 2;
-            this.checkBoxAutoStart.Text = "Start With Windows (Temporary disabled)";
+            this.checkBoxAutoStart.Text = "Start With Windows";
             this.checkBoxAutoStart.UseVisualStyleBackColor = true;
+            this.checkBoxAutoStart.CheckedChanged += new System.EventHandler(this.CheckBoxAutoStart_CheckedChanged);
             // 
             // labelBoot
             // 
