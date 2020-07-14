@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackupForm));
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonAddBackup = new System.Windows.Forms.Button();
+            this.buttonBackupAdd = new System.Windows.Forms.Button();
             this.numericUpDownBackupsAmount = new System.Windows.Forms.NumericUpDown();
             this.checkBoxBackupsAmount = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,6 +47,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.Main = new System.Windows.Forms.TabPage();
+            this.buttonBackupInfo = new System.Windows.Forms.Button();
+            this.buttonBackupDelete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBoxBackups = new System.Windows.Forms.ComboBox();
             this.panelControls = new System.Windows.Forms.Panel();
@@ -69,11 +71,11 @@
             this.notifyIconTray = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Open_App = new System.Windows.Forms.ToolStripMenuItem();
-            this.Exit_App = new System.Windows.Forms.ToolStripMenuItem();
             this.TimerSeparatorTop = new System.Windows.Forms.ToolStripSeparator();
-            this.TimerSeparatorBottom = new System.Windows.Forms.ToolStripSeparator();
             this.Start_Timers = new System.Windows.Forms.ToolStripMenuItem();
             this.Stop_Timers = new System.Windows.Forms.ToolStripMenuItem();
+            this.TimerSeparatorBottom = new System.Windows.Forms.ToolStripSeparator();
+            this.Exit_App = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBackupsAmount)).BeginInit();
             this.panelBackupsAmount.SuspendLayout();
             this.panelTimer.SuspendLayout();
@@ -103,19 +105,19 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Backups";
             // 
-            // buttonAddBackup
+            // buttonBackupAdd
             // 
-            this.buttonAddBackup.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonAddBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAddBackup.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddBackup.Location = new System.Drawing.Point(313, 30);
-            this.buttonAddBackup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonAddBackup.Name = "buttonAddBackup";
-            this.buttonAddBackup.Size = new System.Drawing.Size(107, 38);
-            this.buttonAddBackup.TabIndex = 2;
-            this.buttonAddBackup.Text = "Add Backup";
-            this.buttonAddBackup.UseVisualStyleBackColor = false;
-            this.buttonAddBackup.Click += new System.EventHandler(this.ButtonAddBackup_Click);
+            this.buttonBackupAdd.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonBackupAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBackupAdd.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonBackupAdd.Location = new System.Drawing.Point(264, 30);
+            this.buttonBackupAdd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonBackupAdd.Name = "buttonBackupAdd";
+            this.buttonBackupAdd.Size = new System.Drawing.Size(54, 38);
+            this.buttonBackupAdd.TabIndex = 2;
+            this.buttonBackupAdd.Text = "Add";
+            this.buttonBackupAdd.UseVisualStyleBackColor = false;
+            this.buttonBackupAdd.Click += new System.EventHandler(this.ButtonBackupAdd_Click);
             // 
             // numericUpDownBackupsAmount
             // 
@@ -289,10 +291,12 @@
             // 
             // Main
             // 
+            this.Main.Controls.Add(this.buttonBackupInfo);
+            this.Main.Controls.Add(this.buttonBackupDelete);
             this.Main.Controls.Add(this.panel2);
             this.Main.Controls.Add(this.panelControls);
             this.Main.Controls.Add(this.label1);
-            this.Main.Controls.Add(this.buttonAddBackup);
+            this.Main.Controls.Add(this.buttonBackupAdd);
             this.Main.Controls.Add(this.panelOptions);
             this.Main.Location = new System.Drawing.Point(4, 32);
             this.Main.Name = "Main";
@@ -302,13 +306,41 @@
             this.Main.Text = "Main";
             this.Main.UseVisualStyleBackColor = true;
             // 
+            // buttonBackupInfo
+            // 
+            this.buttonBackupInfo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonBackupInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBackupInfo.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonBackupInfo.Location = new System.Drawing.Point(370, 30);
+            this.buttonBackupInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonBackupInfo.Name = "buttonBackupInfo";
+            this.buttonBackupInfo.Size = new System.Drawing.Size(50, 38);
+            this.buttonBackupInfo.TabIndex = 17;
+            this.buttonBackupInfo.Text = "Info";
+            this.buttonBackupInfo.UseVisualStyleBackColor = false;
+            this.buttonBackupInfo.Click += new System.EventHandler(this.ButtonBackupInfo_Click);
+            // 
+            // buttonBackupDelete
+            // 
+            this.buttonBackupDelete.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonBackupDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBackupDelete.Font = new System.Drawing.Font("Open Sans Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonBackupDelete.Location = new System.Drawing.Point(317, 30);
+            this.buttonBackupDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonBackupDelete.Name = "buttonBackupDelete";
+            this.buttonBackupDelete.Size = new System.Drawing.Size(54, 38);
+            this.buttonBackupDelete.TabIndex = 16;
+            this.buttonBackupDelete.Text = "Del";
+            this.buttonBackupDelete.UseVisualStyleBackColor = false;
+            this.buttonBackupDelete.Click += new System.EventHandler(this.ButtonBackupDelete_Click);
+            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.comboBoxBackups);
             this.panel2.Location = new System.Drawing.Point(8, 30);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(308, 38);
+            this.panel2.Size = new System.Drawing.Size(257, 38);
             this.panel2.TabIndex = 15;
             // 
             // comboBoxBackups
@@ -318,7 +350,7 @@
             this.comboBoxBackups.FormattingEnabled = true;
             this.comboBoxBackups.Location = new System.Drawing.Point(3, 3);
             this.comboBoxBackups.Name = "comboBoxBackups";
-            this.comboBoxBackups.Size = new System.Drawing.Size(300, 31);
+            this.comboBoxBackups.Size = new System.Drawing.Size(249, 31);
             this.comboBoxBackups.TabIndex = 14;
             this.comboBoxBackups.SelectedIndexChanged += new System.EventHandler(this.ComboBoxBackups_SelectedIndexChanged);
             // 
@@ -545,22 +577,10 @@
             this.Open_App.Text = "Open App";
             this.Open_App.Click += new System.EventHandler(this.Open_App_Click);
             // 
-            // Exit_App
-            // 
-            this.Exit_App.Name = "Exit_App";
-            this.Exit_App.Size = new System.Drawing.Size(232, 24);
-            this.Exit_App.Text = "Exit";
-            this.Exit_App.Click += new System.EventHandler(this.Exit_App_Click);
-            // 
             // TimerSeparatorTop
             // 
             this.TimerSeparatorTop.Name = "TimerSeparatorTop";
             this.TimerSeparatorTop.Size = new System.Drawing.Size(229, 6);
-            // 
-            // TimerSeparatorBottom
-            // 
-            this.TimerSeparatorBottom.Name = "TimerSeparatorBottom";
-            this.TimerSeparatorBottom.Size = new System.Drawing.Size(229, 6);
             // 
             // Start_Timers
             // 
@@ -575,6 +595,18 @@
             this.Stop_Timers.Size = new System.Drawing.Size(232, 24);
             this.Stop_Timers.Text = "Stop all timers";
             this.Stop_Timers.Click += new System.EventHandler(this.Stop_Timers_Click);
+            // 
+            // TimerSeparatorBottom
+            // 
+            this.TimerSeparatorBottom.Name = "TimerSeparatorBottom";
+            this.TimerSeparatorBottom.Size = new System.Drawing.Size(229, 6);
+            // 
+            // Exit_App
+            // 
+            this.Exit_App.Name = "Exit_App";
+            this.Exit_App.Size = new System.Drawing.Size(232, 24);
+            this.Exit_App.Text = "Exit";
+            this.Exit_App.Click += new System.EventHandler(this.Exit_App_Click);
             // 
             // BackupForm
             // 
@@ -622,7 +654,7 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button buttonAddBackup;
+        private System.Windows.Forms.Button buttonBackupAdd;
         private System.Windows.Forms.NumericUpDown numericUpDownBackupsAmount;
         private System.Windows.Forms.CheckBox checkBoxBackupsAmount;
         private System.Windows.Forms.Label label3;
@@ -665,6 +697,8 @@
         private System.Windows.Forms.ToolStripMenuItem Start_Timers;
         private System.Windows.Forms.ToolStripMenuItem Stop_Timers;
         private System.Windows.Forms.ToolStripSeparator TimerSeparatorBottom;
+        private System.Windows.Forms.Button buttonBackupInfo;
+        private System.Windows.Forms.Button buttonBackupDelete;
     }
 }
 

@@ -19,9 +19,6 @@ namespace Simple_Backuper.domain
         public bool TimerEnabled { get; set; }
         public int TimerDelay { get; set; }
 
-        // sets whether the app should start a timer for this backup when it starts
-        public bool AutoSaveWithBoot { get; set; }
-
         public Backup()
         {
             Name = "";
@@ -31,7 +28,6 @@ namespace Simple_Backuper.domain
             CustomAmount = 5;
             TimerEnabled = false;
             TimerDelay = 15;
-            AutoSaveWithBoot = false;
         }
     }
 }

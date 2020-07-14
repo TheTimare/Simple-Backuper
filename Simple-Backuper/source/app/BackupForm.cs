@@ -60,7 +60,7 @@ namespace Simple_Backuper.app
         #region Backups configuring and selecting
 
         // adding new folder to manage
-        private void ButtonAddBackup_Click(object sender, EventArgs e)
+        private void ButtonBackupAdd_Click(object sender, EventArgs e)
         {
             // get backup folder path
             using (var folderDialog = new FolderBrowserDialog())
@@ -70,13 +70,88 @@ namespace Simple_Backuper.app
                 DialogResult result = folderDialog.ShowDialog();
                 if (result == DialogResult.OK && !string.IsNullOrEmpty(folderDialog.SelectedPath))
                 {
+                    if (data.ContainsSourcePath(folderDialog.SelectedPath))
+                    {
+                        MessageBox.Show(this, "Such backup already exists"
+                            , "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     Backup backup = new Backup();
-                    backup.Name = DirectoryUtil.GetDirectoryName(folderDialog.SelectedPath);
+                    string tempName = DirectoryUtil.GetDirectoryName(folderDialog.SelectedPath);
+                    string addition = "";
+                    int i = 0;
+                    while (data.ContainsBackupName(tempName + addition))
+                    {
+                        addition = (++i).ToString();
+                    }
+                    backup.Name = tempName + addition;
                     backup.SourcePath = folderDialog.SelectedPath;
                     AddBackup(backup);
                     SwitchToBackup(backup.Name);
                 }
             }
+        }
+
+        private void ButtonBackupDelete_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(mainSelectedBackup))
+            {
+                return;
+            }
+            Backup backup = data.GetBackup(mainSelectedBackup);
+            // stop timer if it works
+            if (workingTimers.ContainsKey(mainSelectedBackup))
+            {
+                try
+                {
+                    // stop timer thread
+                    workingTimers[mainSelectedBackup].Abort();
+                }
+                catch (Exception) { }
+                // remove thread from list of working timers
+                workingTimers.Remove(mainSelectedBackup);
+            }
+            // delete all remain stamps
+            List<string> stamps = new List<string>(backup.StampsList);
+            foreach(string stamp in stamps)
+            {
+                DeleteBackupStamp(mainSelectedBackup, stamp);
+            }
+            // remove it from comboboxes
+            comboBoxBackups.Items.Remove(mainSelectedBackup);
+            comboBoxBackupsManaging.Items.Remove(mainSelectedBackup);
+            if (!string.IsNullOrEmpty(managingSelectedBackup) && managingSelectedBackup.Equals(mainSelectedBackup))
+            {
+                listViewBackups.Items.Clear();
+                panelBackupManage.Enabled = false;
+                managingSelectedBackup = null;
+            }
+            mainSelectedBackup = null;
+            
+            // and finally delete backup itself
+            data.Backups.Remove(backup);
+
+            panelOptions.Enabled = false;
+            panelControls.Enabled = false;
+        }
+
+        // shows info about choosen backup
+        private void ButtonBackupInfo_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(mainSelectedBackup))
+            {
+                MessageBox.Show(this
+                    , "Select a backup from the list or \r\nadd a new backup to see information about it."
+                    , "Backup Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            Backup backup = data.GetBackup(mainSelectedBackup);
+            MessageBox.Show(this
+                , "Name: " + backup.Name + "\r\n"
+                + "Source folder: " + backup.SourcePath + "\r\n"
+                + "Number of stamps available: " + backup.StampsList.Count() + "\r\n"
+                + "Does the timer works: " + ( workingTimers.ContainsKey(mainSelectedBackup) ? "yes" : "no")
+                , mainSelectedBackup + " info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // when user selects the item for the first time the option panel unlocks
@@ -102,6 +177,7 @@ namespace Simple_Backuper.app
             numericUpDownBackupsAmount.Value = backup.CustomAmount;
             numericUpDownTimer.Value = backup.TimerDelay;
             // check if backup have working timer
+            
             if (workingTimers.ContainsKey(backupName))
             {
                 buttonStartBackuping.Enabled = false;
@@ -109,7 +185,7 @@ namespace Simple_Backuper.app
             }
             else
             {
-                buttonStartBackuping.Enabled = checkBoxTimer.Enabled ? true : false;
+                buttonStartBackuping.Enabled = backup.TimerEnabled ? true : false;
                 buttonStopBackuping.Enabled = false;
             }
             // enable option saving back
@@ -194,15 +270,14 @@ namespace Simple_Backuper.app
 
         private void ButtonStopBackuping_Click(object sender, EventArgs e)
         {
-            string backupName = mainSelectedBackup;
             try
             {
                 // stop timer thread
-                workingTimers[backupName].Abort();
+                workingTimers[mainSelectedBackup].Abort();
             }
             catch (Exception) { }
             // remove thread from list of working timers
-            workingTimers.Remove(backupName);
+            workingTimers.Remove(mainSelectedBackup);
             // switch buttons
             buttonStartBackuping.Enabled = true;
             buttonStopBackuping.Enabled = false;
@@ -226,6 +301,7 @@ namespace Simple_Backuper.app
         private void ButtonCreateBackupStamp_Click(object sender, EventArgs e)
         {
             CreateBackupStamp(managingSelectedBackup);
+            UpdateListView();
         }
 
         // delete choosen backup
@@ -237,6 +313,9 @@ namespace Simple_Backuper.app
             }
             string selectedStamp = listViewBackups.SelectedItems[0].Text;
             DeleteBackupStamp(managingSelectedBackup, selectedStamp);
+            // remove deleted backup from list view
+            listViewBackups.Items.Remove(listViewBackups.SelectedItems[0]);
+            UpdateListView();
         }
 
         // delete original directory and replace it with backup files
@@ -248,7 +327,9 @@ namespace Simple_Backuper.app
             }
             string selectedStamp = listViewBackups.SelectedItems[0].Text;
             ReplaceSourceWithStamp(managingSelectedBackup, selectedStamp);
-            MessageBox.Show("Source replaced successfully");
+            UpdateListView();
+            MessageBox.Show(this, "Source replaced successfully", "Info"
+                , MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // updates list view according to selected backup
@@ -357,7 +438,6 @@ namespace Simple_Backuper.app
             }
             // copy source directory to backup directory named by time
             DirectoryUtil.DirectoryCopy(backup.SourcePath, backupPath + "\\" + currentTimeStr, true);
-            UpdateListView();
             // Update app data
             AppDataUtil.SaveAppData(data, Config.DATA_PATH);
         }
@@ -366,12 +446,13 @@ namespace Simple_Backuper.app
         {
             Backup backup = data.GetBackup(backupName);
             // removing selected backup
-            Directory.Delete(Config.STORAGE_PATH + "\\" + backupName + "\\" + stamp, true);
+            try
+            {
+                Directory.Delete(Config.STORAGE_PATH + "\\" + backupName + "\\" + stamp, true);
+            }
+            catch (DirectoryNotFoundException) { }
             // find selected stamp and delete it
             backup.StampsList.Remove(stamp);
-            // remove deleted backup from list view
-            listViewBackups.Items.Remove(listViewBackups.SelectedItems[0]);
-            UpdateListView();
         }
 
         private void ReplaceSourceWithStamp(string backupName, string stamp)
@@ -386,7 +467,6 @@ namespace Simple_Backuper.app
             // copy stamp to the source
             DirectoryUtil.DirectoryCopy(Config.STORAGE_PATH + "\\" + backupName 
                 + "\\" + stamp, backup.SourcePath, true);
-            UpdateListView();
         }
 
         // Switch first tab to the particular backup

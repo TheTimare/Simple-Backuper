@@ -29,5 +29,27 @@ namespace Simple_Backuper.domain
             }
             return null;
         }
+        public bool ContainsBackupName(string name)
+        {
+            foreach(Backup backup in Backups)
+            {
+                if (backup.Name.Equals(name))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool ContainsSourcePath(string path)
+        {
+            foreach (Backup backup in Backups)
+            {
+                if (backup.SourcePath.Equals(path))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
